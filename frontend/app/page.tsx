@@ -3,7 +3,7 @@ import FoodCard from "@/components/menu/foodCard";
 
 export default function Home() {
     return (
-        <div className="grid grid-cols-3">
+        <div className="grid grid-cols-3 mx-auto w-fit">
             <div className="h-full p-5">
                 <h1 className="text-2xl font-semibold">Menu Items</h1>
                 <Separator />
@@ -15,7 +15,7 @@ export default function Home() {
                     </ul>
                 </div>
             </div>
-            <div className="col-span-2 h-full">
+            <div className="col-span-2 h-full w-fit">
                 {
                     Array(10).fill(0).map((_, index) => (
                         <FoodCard key={index} />

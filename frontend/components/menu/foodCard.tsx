@@ -5,7 +5,7 @@ import burger from '@/public/burger.jpeg';
 
 export default function FoodCard() {
     return (
-        <div className="bg-zinc-100 m-5 flex rounded shadow-lg">
+        <div className="bg-zinc-100 m-5 flex rounded shadow-lg max-w-3xl">
             <Image src={burger} alt="Food Item" width={200} height={150} className="aspect-[4/3] rounded shadow-md h-full w-auto" />
             <div className="p-5 flex flex-col">
                 <div className="flex justify-between">

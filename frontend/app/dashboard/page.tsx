@@ -5,10 +5,10 @@ export default function DashBoard() {
     return (
         <div className="flex flex-col">
             <h1 className="font-bold text-2xl mb-5">Incoming Orders</h1>
-            <div className="grid grid-cols-2 gap-y-8">
+            <div className="grid gap-8 lg:grid-cols-2 2xl:grid-cols-3">
                 {
                     Array(10).fill(0).map((_, index) => (
-                        <div key={index} className="bg-zinc-100 flex flex-col p-5 rounded shadow-lg w-[500px]">
+                        <div key={index} className="bg-zinc-100 flex flex-col p-5 rounded shadow-lg w-[500px] min-h-52">
                             <div className="flex justify-between">
                                 <h1 className="text-2xl font-semibold">Customer</h1>
                                 <p className="text-xl font-semibold">Total $10</p>
