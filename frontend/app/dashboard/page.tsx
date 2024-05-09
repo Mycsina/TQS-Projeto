@@ -1,5 +1,4 @@
-import { Separator } from "@/components/ui/separator";
-import { Button } from "@/components/ui/button";
+import OrderCard from "@/components/menu/orderCard";
 
 export default function DashBoard() {
     return (
@@ -7,24 +6,9 @@ export default function DashBoard() {
             <h1 className="font-bold text-2xl mb-5">Incoming Orders</h1>
             <div className="grid gap-8 lg:grid-cols-2 2xl:grid-cols-3">
                 {
-                    Array(10).fill(0).map((_, index) => (
-                        <div key={index} className="bg-zinc-100 flex flex-col p-5 rounded shadow-lg w-[500px] min-h-52">
-                            <div className="flex justify-between">
-                                <h1 className="text-2xl font-semibold">Customer</h1>
-                                <p className="text-xl font-semibold">Total $10</p>
-                            </div>
-                            <Separator />
-                            <div className="my-5">
-                                <p>Burger</p>
-                                <p>Extra fries</p>
-                                <p>Drink</p>
-                            </div>
-                            <div className="flex justify-between items-center">
-                                <p>Status: <span className="text-green-500">Preparing</span></p>
-                                <Button className="">Mark as Done</Button>
-                            </div>
-                        </div>
 
+                    Array(10).fill(0).map((_, index) => (
+                        <OrderCard key={index} />
                     ))
                 }
 
