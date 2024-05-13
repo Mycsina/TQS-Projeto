@@ -1,4 +1,4 @@
-package ua.tqs.project.QuickServe;
+package ua.tqs.project.quickserve;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.test.context.TestConfiguration;

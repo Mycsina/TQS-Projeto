@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>ua.tqs.project</groupId>
-	<artifactId>QuickServe</artifactId>
+	<artifactId>quickserve</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>QuickServe</name>
 	<description>TQS Project 2023/24</description>
