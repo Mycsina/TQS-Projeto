@@ -14,7 +14,7 @@ import lombok.AllArgsConstructor;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="order")
+@Table(name="order_")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
