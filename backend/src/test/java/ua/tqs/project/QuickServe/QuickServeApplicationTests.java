@@ -1,4 +1,4 @@
-package ua.tqs.project.QuickServe;
+package ua.tqs.project.quickserve;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
