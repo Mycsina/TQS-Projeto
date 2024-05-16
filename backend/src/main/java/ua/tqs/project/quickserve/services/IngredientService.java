@@ -1,7 +1,5 @@
 package ua.tqs.project.quickserve.services; 
 
-import java.util.UUID;
-
 import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
@@ -19,11 +17,11 @@ public class IngredientService {
         return repository.save(ingredient);
     }
 
-    public Ingredient getIngredientById(UUID id) {
+    public Ingredient getIngredientById(long id) {
         return repository.findById(id).orElse(null);
     }
 
-    public void deleteIngredientById(UUID id) {
+    public void deleteIngredientById(long id) {
         repository.deleteById(id);
     }
 }

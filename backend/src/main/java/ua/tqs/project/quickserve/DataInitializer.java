@@ -88,7 +88,7 @@ public class DataInitializer implements CommandLineRunner {
         User u2 = new User("McDonald's Manager", "1234", RoleEnum.MANAGER, "mcdonalds.mc.pt", 123123123);
 
         // Order
-        Order o1 = new Order(LocalDateTime.now(), 5.0, r1, u1, PickupMethod.DELIVERY, Status.IN_MAKING);
+        Order o1 = new Order(LocalDateTime.now(), 5.0, a2, r1, u1, PickupMethod.DELIVERY, Status.IN_MAKING);
 
         // OrderItem
         OrderItem oi1 = new OrderItem(5, i1, o1);

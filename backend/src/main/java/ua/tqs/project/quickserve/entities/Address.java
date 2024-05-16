@@ -1,7 +1,5 @@
 package ua.tqs.project.quickserve.entities;
 
-import java.util.*;
-
 import jakarta.persistence.*;
 
 import lombok.Getter;
@@ -17,8 +15,8 @@ import lombok.AllArgsConstructor;
 @Table(name="address")
 public class Address {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
 
     @Column(nullable = false)
     private String street;
@@ -34,6 +32,14 @@ public class Address {
 
     @Column(nullable = true)
     private String state;
+
+    public Address(long id, String street, String city, String postalCode, String country) {
+        this.id = id;
+        this.street = street;
+        this.city = city;
+        this.postalCode = postalCode;
+        this.country = country;
+    }
 
     public Address(String street, String city, String postalCode, String country) {
         this.street = street;

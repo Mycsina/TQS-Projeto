@@ -1,6 +1,5 @@
 package ua.tqs.project.quickserve.entities;
 
-import java.util.*;
 import java.time.LocalTime;
 
 import jakarta.persistence.*;
@@ -18,8 +17,8 @@ import lombok.AllArgsConstructor;
 @Table(name="restaurant")
 public class Restaurant {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
 
     @Column(nullable = false)
     private String name;

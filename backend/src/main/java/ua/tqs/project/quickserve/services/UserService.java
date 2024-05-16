@@ -1,7 +1,5 @@
 package ua.tqs.project.quickserve.services; 
 
-import java.util.UUID;
-
 import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
@@ -19,11 +17,11 @@ public class UserService {
         return repository.save(user);
     }
 
-    public User getUserById(UUID id) {
+    public User getUserById(long id) {
         return repository.findById(id).orElse(null);
     }
 
-    public void deleteUserById(UUID id) {
+    public void deleteUserById(long id) {
         repository.deleteById(id);
     }
 }

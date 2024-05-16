@@ -1,7 +1,5 @@
 package ua.tqs.project.quickserve.services; 
 
-import java.util.UUID;
-
 import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
@@ -19,11 +17,11 @@ public class MenuService {
         return repository.save(menu);
     }
 
-    public Menu getMenuById(UUID id) {
+    public Menu getMenuById(long id) {
         return repository.findById(id).orElse(null);
     }
 
-    public void deleteMenuById(UUID id) {
+    public void deleteMenuById(long id) {
         repository.deleteById(id);
     }
 }

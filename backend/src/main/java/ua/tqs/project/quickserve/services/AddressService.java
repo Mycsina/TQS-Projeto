@@ -1,7 +1,5 @@
 package ua.tqs.project.quickserve.services; 
 
-import java.util.UUID;
-
 import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
@@ -19,11 +17,11 @@ public class AddressService {
         return repository.save(address);
     }
 
-    public Address getAddressById(UUID id) {
+    public Address getAddressById(long id) {
         return repository.findById(id).orElse(null);
     }
 
-    public void deleteAddressById(UUID id) {
+    public void deleteAddressById(long id) {
         repository.deleteById(id);
     }
 }
