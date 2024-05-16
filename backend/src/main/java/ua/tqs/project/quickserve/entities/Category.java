@@ -26,4 +26,9 @@ public class Category {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "menu_id")
     private Menu menu;
+
+    public Category(String name, Menu menu) {
+        this.name = name;
+        this.menu = menu;
+    }
 }

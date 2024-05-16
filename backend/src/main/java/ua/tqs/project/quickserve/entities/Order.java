@@ -27,6 +27,10 @@ public class Order {
     private double totalPrice;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "address_id", nullable = true)
+    private Address deliveryAddress;
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "restaurant_id")
     private Restaurant restaurant;
 
@@ -41,4 +45,23 @@ public class Order {
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private Status status;
+
+    public Order(LocalDateTime scheduledTime, double totalPrice, Restaurant restaurant, User user, PickupMethod pickupMethod, Status status) {
+        this.scheduledTime = scheduledTime;
+        this.totalPrice = totalPrice;
+        this.restaurant = restaurant;
+        this.user = user;
+        this.pickupMethod = pickupMethod;
+        this.status = status;
+    }
+
+    public Order(LocalDateTime scheduledTime, double totalPrice, Address deliveryAddress, Restaurant restaurant, User user, PickupMethod pickupMethod, Status status) {
+        this.scheduledTime = scheduledTime;
+        this.totalPrice = totalPrice;
+        this.deliveryAddress = deliveryAddress;
+        this.restaurant = restaurant;
+        this.user = user;
+        this.pickupMethod = pickupMethod;
+        this.status = status;
+    }
 }

@@ -40,4 +40,13 @@ public class Item {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
     private Category category;
+
+    public Item(String name, String description, String image, double price, Restaurant restaurant, Category category) {
+        this.name = name;
+        this.description = description;
+        this.image = image;
+        this.price = price;
+        this.restaurant = restaurant;
+        this.category = category;
+    }
 }

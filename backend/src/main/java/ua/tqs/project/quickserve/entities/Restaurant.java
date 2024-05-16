@@ -47,4 +47,18 @@ public class Restaurant {
     @OneToOne
     @JoinColumn(name = "menu_id", nullable = false)
     private Menu menu;
+
+    public Restaurant(String name, String description, int phone, State state, Address address, Menu menu) {
+        this.name = name;
+        this.description = description;
+        this.phone = phone;
+        this.state = state;
+        this.address = address;
+        this.menu = menu;
+    }
+
+    public void setTimes(LocalTime openingTime, LocalTime closingTime) {
+        this.openingTime = openingTime;
+        this.closingTime = closingTime;
+    }
 }
