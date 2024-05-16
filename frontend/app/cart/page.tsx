@@ -1,3 +1,4 @@
+import Link from "next/link";
 import FoodCard from "@/components/menu/foodCard";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
@@ -49,7 +50,9 @@ export default function Cart() {
                     <h2 className="text-xl font-semibold">$21.5</h2>
                 </div>
                 <div className="flex-grow"></div>
-                <Button className="w-full font-bold">Pay Now</Button>
+                <Link href="/order-success">
+                    <Button className="w-full font-bold">Pay Now</Button>
+                </Link>
             </div>
         </div>
     );

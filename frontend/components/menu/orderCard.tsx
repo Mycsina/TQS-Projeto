@@ -3,10 +3,10 @@ import { Button } from "@/components/ui/button";
 
 export default function OrderCard() {
     return (
-        <div className="bg-zinc-100 flex flex-col p-5 rounded shadow-lg w-[500px] min-h-52">
+        <div className="bg-zinc-100 dark:bg-gray-950 flex flex-col p-5 rounded shadow-lg w-[500px] min-h-52">
             <div className="flex justify-between">
-                <h1 className="text-2xl font-semibold">Customer</h1>
-                <p className="text-xl font-semibold">Total $10</p>
+                <h1 className="text-2xl font-semibold">#12345</h1>
+                <p className="text-xl font-semibold">Time Elapsed: 1m 10s</p>
             </div>
             <Separator />
             <div className="my-5">
