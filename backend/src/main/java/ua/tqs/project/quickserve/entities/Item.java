@@ -1,7 +1,5 @@
 package ua.tqs.project.quickserve.entities;
 
-import java.util.*;
-
 import jakarta.persistence.*;
 
 import lombok.Getter;
@@ -17,8 +15,8 @@ import lombok.AllArgsConstructor;
 @Table(name="item")
 public class Item {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
 
     @Column(nullable = false)
     private String name;
@@ -40,4 +38,13 @@ public class Item {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
     private Category category;
+
+    public Item(String name, String description, String image, double price, Restaurant restaurant, Category category) {
+        this.name = name;
+        this.description = description;
+        this.image = image;
+        this.price = price;
+        this.restaurant = restaurant;
+        this.category = category;
+    }
 }
