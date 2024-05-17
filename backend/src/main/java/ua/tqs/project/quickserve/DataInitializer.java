@@ -54,7 +54,8 @@ public class DataInitializer implements CommandLineRunner {
         // Restaurant
         Address a1 = new Address("Rua do Amial", "Porto", "4200-055", "Portugal");
         Menu m1 = new Menu();
-        Restaurant r1 = new Restaurant("McDonald's", "Number 1 in the fast food industry!", 123123123, State.OPEN, a1, m1);
+        User u2 = new User("McDonald's Manager", "1234", RoleEnum.MANAGER, "mcdonalds.mc.pt", 123123123);
+        Restaurant r1 = new Restaurant("McDonald's", "Number 1 in the fast food industry!", 123123123, State.OPEN, a1, m1, u2);
         r1.setTimes(LocalTime.of(10,0,0), LocalTime.of(4,0,0));
         
         // Category
@@ -85,8 +86,6 @@ public class DataInitializer implements CommandLineRunner {
         Address a2 = new Address("Casa do Joao", "Porto", "4200-055", "Portugal");
         User u1 = new User("Joao", "1234", RoleEnum.CLIENT, "joao@joao.pt", 123123123, a2);
 
-        User u2 = new User("McDonald's Manager", "1234", RoleEnum.MANAGER, "mcdonalds.mc.pt", 123123123);
-
         // Order
         Order o1 = new Order(LocalDateTime.now(), 5.0, a2, r1, u1, PickupMethod.DELIVERY, Status.IN_MAKING);
 
@@ -95,13 +94,13 @@ public class DataInitializer implements CommandLineRunner {
 
         // Save
         addressRepository.save(a1); addressRepository.save(a2);
+        userRepository.save(u1); userRepository.save(u2);
         menuRepository.save(m1);
         restaurantRepository.save(r1);
         categoryRepository.save(c1);
         itemRepository.save(i1);
         ingredientRepository.save(ing1); ingredientRepository.save(ing2); ingredientRepository.save(ing3); ingredientRepository.save(ing4); ingredientRepository.save(ing5); ingredientRepository.save(ing6); ingredientRepository.save(ing7);
         itemIngredientRepository.save(ii1); itemIngredientRepository.save(ii2); itemIngredientRepository.save(ii3); itemIngredientRepository.save(ii4); itemIngredientRepository.save(ii5); itemIngredientRepository.save(ii6); itemIngredientRepository.save(ii7);
-        userRepository.save(u1); userRepository.save(u2);
         orderRepository.save(o1);
         orderItemRepository.save(oi1);
     }

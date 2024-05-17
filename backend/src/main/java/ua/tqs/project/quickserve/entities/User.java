@@ -32,15 +32,10 @@ public class User {
     @Column(nullable = false)
     private int phone;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "address_id", nullable = true)
     private Address address;
     // Client Side
-
-    @ManyToOne
-    @JoinColumn(name = "restaurant_id", nullable = true)
-    private Restaurant restaurant;
-    // Manager Side
     
     public User(String name, String password, RoleEnum role, String email, int phone) {
         this.name = name;
@@ -57,14 +52,5 @@ public class User {
         this.email = email;
         this.phone = phone;
         this.address = address;
-    }
-
-    public User(String name, String password, RoleEnum role, String email, int phone, Restaurant restaurant) {
-        this.name = name;
-        this.password = password;
-        this.role = role;
-        this.email = email;
-        this.phone = phone;
-        this.restaurant = restaurant;
     }
 }

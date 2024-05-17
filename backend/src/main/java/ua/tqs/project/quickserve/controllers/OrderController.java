@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.AllArgsConstructor;
-import ua.tqs.project.quickserve.dto.FullOrderDTO;
+import ua.tqs.project.quickserve.dto.WorkerOrderDTO;
 import ua.tqs.project.quickserve.entities.Order;
 import ua.tqs.project.quickserve.entities.Status;
 import ua.tqs.project.quickserve.services.OrderService;
@@ -39,6 +39,12 @@ public class OrderController {
         return new ResponseEntity<>(service.getOrderById(id), HttpStatus.OK);
     }
 
+    @Operation(summary = "Get worker order by id")
+    @GetMapping("/worker/{id}")
+    public ResponseEntity<WorkerOrderDTO> getFullOrderById(@PathVariable long id) {
+        return new ResponseEntity<>(service.getWorkerOrderById(id), HttpStatus.OK);
+    }
+
     @Operation(summary = "Get in-making orders")
     @GetMapping("/inmaking")
     public ResponseEntity<List<Order>> getInMakingOrders() {
@@ -47,7 +53,7 @@ public class OrderController {
 
     @Operation(summary = "Post an order")
     @PostMapping
-    public ResponseEntity<Order> postOrder(FullOrderDTO order) {
+    public ResponseEntity<Order> postOrder(WorkerOrderDTO order) {
         service.makeOrder(order);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }

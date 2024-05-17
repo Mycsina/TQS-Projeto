@@ -19,7 +19,7 @@ public class ItemIngredient {
     private long id;
 
     @Column(nullable = false)
-    private int quantity;
+    private int ingredientQuantity;
 
     @Column(nullable = false)
     private boolean isDefault;
@@ -37,15 +37,15 @@ public class ItemIngredient {
     @JoinColumn(name = "ingredient_id")
     private Ingredient ingredient;
 
-    public ItemIngredient(int quantity, boolean isDefault, Item item, Ingredient ingredient) {
-        this.quantity = quantity;
+    public ItemIngredient(int ingredientQuantity, boolean isDefault, Item item, Ingredient ingredient) {
+        this.ingredientQuantity = ingredientQuantity;
         this.isDefault = isDefault;
         this.item = item;
         this.ingredient = ingredient;
     }
 
-    public ItemIngredient(int quantity, boolean isDefault, OrderItem orderItem, Ingredient ingredient) {
-        this.quantity = quantity;
+    public ItemIngredient(int ingredientQuantity, boolean isDefault, OrderItem orderItem, Ingredient ingredient) {
+        this.ingredientQuantity = ingredientQuantity;
         this.isDefault = isDefault;
         this.orderItem = orderItem;
         this.ingredient = ingredient;

@@ -1,5 +1,7 @@
 package ua.tqs.project.quickserve.services; 
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
@@ -12,6 +14,10 @@ import ua.tqs.project.quickserve.repositories.OrderItemRepository;
 public class OrderItemService {
     
     private OrderItemRepository repository;
+
+    public List<OrderItem> getOrderItemsByOrderId(long orderId) {
+        return repository.findByOrderId(orderId);
+    }
 
     public OrderItem save(OrderItem orderItem) {
         return repository.save(orderItem);
