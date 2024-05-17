@@ -25,15 +25,15 @@ public class ItemIngredient {
     private boolean isDefault;
     // Whether the item ingredient has a default quantity or not
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "item_id", nullable = true)
     private Item item;
     
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "orderItem_id", nullable = true)
     private OrderItem orderItem;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "ingredient_id")
     private Ingredient ingredient;
 

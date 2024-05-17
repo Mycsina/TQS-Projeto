@@ -2,18 +2,31 @@ package ua.tqs.project.quickserve.dto;
 
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import ua.tqs.project.quickserve.entities.Order;
 import ua.tqs.project.quickserve.entities.Address;
 import ua.tqs.project.quickserve.entities.PickupMethod;
 
 public class BaseOrderDTO {
+    @JsonProperty("orderId")
     long orderId;
+
+    @JsonProperty("scheduledTime")
     LocalDateTime scheduledTime;
     // Creation time is registered at the time of object instantiation
     // Total price will be calculated in the backend
+
+    @JsonProperty("deliveryAddress")
     Address deliveryAddress;
+
+    @JsonProperty("restaurantId")
     long restaurantId;
+
+    @JsonProperty("userId")
     long userId;
+
+    @JsonProperty("pickupMethod")
     PickupMethod pickupMethod;
     // Status is set to SCHEDULED by default
 
