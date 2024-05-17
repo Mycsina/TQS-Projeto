@@ -45,7 +45,7 @@ public class OrderService {
 
     public OrderDTO getOrderDTOById(long id) {
         Order order = getOrderById(id);
-        return new OrderDTO(order.getScheduledTime(), order.getDeliveryAddress(), order.getRestaurant().getId(), order.getUser().getId(), order.getPickupMethod());
+        return new OrderDTO(order);
     }
 
     public WorkerOrderDTO getWorkerOrderById(long id) {
