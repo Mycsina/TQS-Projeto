@@ -1,6 +1,7 @@
 package ua.tqs.project.quickserve.services;
 
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
 
@@ -11,8 +12,8 @@ import lombok.AllArgsConstructor;
 import ua.tqs.project.quickserve.entities.ItemIngredient;
 import ua.tqs.project.quickserve.entities.OrderItem;
 import ua.tqs.project.quickserve.entities.Order;
+import ua.tqs.project.quickserve.dto.BaseOrderDTO;
 import ua.tqs.project.quickserve.dto.OrderDTO;
-import ua.tqs.project.quickserve.dto.WorkerOrderDTO;
 import ua.tqs.project.quickserve.dto.ItemIngredientDTO;
 import ua.tqs.project.quickserve.entities.Status;
 import ua.tqs.project.quickserve.repositories.OrderRepository;
@@ -43,13 +44,7 @@ public class OrderService {
         return repository.findById(id).orElse(null);
     }
 
-    public OrderDTO getOrderDTOById(long id) {
-        Order order = getOrderById(id);
-        return new OrderDTO(order);
-    }
-
-    public WorkerOrderDTO getWorkerOrderById(long id) {
-        Order order = this.getOrderById(id);
+    public OrderDTO convertOrderToDTO(Order order) {
         List<OrderItem> orderItems = orderItemService.getOrderItemsByOrderId(order.getId());
         Map<String, List<ItemIngredientDTO>> ingredients = new HashMap<>();
         for (OrderItem orderItem : orderItems) {
@@ -58,14 +53,18 @@ public class OrderService {
             ingredients.put(orderItem.getItem().getName(), itemIngredientsDTO);
         }
 
-        return new WorkerOrderDTO(order, ingredients);
+        return new OrderDTO(order, ingredients);
+    }
+
+    public List<OrderDTO> convertOrderListToDTOs(List<Order> orders) {
+        List<OrderDTO> orderDTOs = new ArrayList<>();
+        for (Order order : orders) {
+            orderDTOs.add(convertOrderToDTO(order));
+        }
+        return orderDTOs;
     }
 
     public void deleteOrderById(long id) {
         repository.deleteById(id);
-    }
-
-    public void makeOrder(WorkerOrderDTO order) {
-        return;
     }
 }
