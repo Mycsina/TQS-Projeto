@@ -22,8 +22,8 @@ services:
       timeout: 5s
       retries: 5
 
-  backend:
-    container_name: quickserve-api
+  api:
+    container_name: api
     image: quickserve-api:latest
     env_file:
       - .env
@@ -39,15 +39,14 @@ services:
       SPRING_JPA_HIBERNATE_DDL_AUTO: update 
       SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT: org.hibernate.dialect.PostgreSQLDialect
 
-  # frontend:
-  #   build:
-  #     context: ./frontend/
-  #     dockerfile: Dockerfile
-  #   restart: unless-stopped
-  #   depends_on:
-  #     - api
-  #   ports:
-  #     - 3000:3000
+  nextjs:
+    container_name: nextjs
+    image: quickserve-frontend:latest
+    restart: unless-stopped
+    depends_on:
+      - api
+    ports:
+      - 3000:3000
 
 volumes:
   postgres_data:

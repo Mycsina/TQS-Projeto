@@ -2,11 +2,11 @@
 
 # Define the directories containing Dockerfiles
 api="./backend"
-#nextjs="./frontend/diseasecard-app"
+nextjs="./frontend"
 #nginx="./frontend/nginx"
 
 api_name="quickserve-api"
-#nextjs_name="diseasecard-frontend"
+nextjs_name="quickserve-frontend"
 #nginx_name="nginx"
 
 # Function to build Docker images
@@ -20,7 +20,7 @@ build_images() {
 # Function to build all Docker images
 build_all_images() {
     build_images "$api" "$api_name"
-    #build_images "$nextjs" "$nextjs_name"
+    build_images "$nextjs" "$nextjs_name"
     #build_images "$nginx" "$nginx_name"
 }   
 
@@ -29,8 +29,8 @@ if [ "$1" == "all" ]; then
     build_all_images
 elif [ "$1" == "api" ]; then
     build_images "$api" "$api_name"
-#elif [ "$1" == "nextjs" ]; then
-#    build_images "$nextjs" "$nextjs_name"
+elif [ "$1" == "nextjs" ]; then
+    build_images "$nextjs" "$nextjs_name"
 #elif [ "$1" == "nginx" ]; then
 #    build_images "$nginx" "$nginx_name"
 else
