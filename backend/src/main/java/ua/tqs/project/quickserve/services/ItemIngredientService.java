@@ -1,16 +1,14 @@
-package ua.tqs.project.quickserve.services; 
-
-import org.springframework.stereotype.Service;
+package ua.tqs.project.quickserve.services;
 
 import lombok.AllArgsConstructor;
-
+import org.springframework.stereotype.Service;
 import ua.tqs.project.quickserve.entities.ItemIngredient;
 import ua.tqs.project.quickserve.repositories.ItemIngredientRepository;
 
 @Service
 @AllArgsConstructor
 public class ItemIngredientService {
-    
+
     private ItemIngredientRepository repository;
 
     public ItemIngredient save(ItemIngredient itemIngredient) {

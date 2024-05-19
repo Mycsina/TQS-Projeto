@@ -1,16 +1,14 @@
-package ua.tqs.project.quickserve.services; 
-
-import org.springframework.stereotype.Service;
+package ua.tqs.project.quickserve.services;
 
 import lombok.AllArgsConstructor;
-
+import org.springframework.stereotype.Service;
 import ua.tqs.project.quickserve.entities.User;
 import ua.tqs.project.quickserve.repositories.UserRepository;
 
 @Service
 @AllArgsConstructor
 public class UserService {
-    
+
     private UserRepository repository;
 
     public User save(User user) {

@@ -1,14 +1,12 @@
 package ua.tqs.project.quickserve.repositories;
 
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
+import ua.tqs.project.quickserve.entities.Address;
 
 import java.util.List;
-
-import ua.tqs.project.quickserve.entities.Address;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -42,12 +40,12 @@ class AddressRepositoryTest {
         entityManager.merge(address1);
         entityManager.merge(address2);
         entityManager.flush();
-        
+
         List<Address> found = addressRepository.findAll();
         assertThat(found).hasSize(2);
     }
 
-    @Test 
+    @Test
     void saveAddress() {
         Address address3 = new Address(3L, "abc", "abc", "2000-000", "abc");
 

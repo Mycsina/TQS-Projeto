@@ -1,9 +1,9 @@
 package ua.tqs.project.quickserve.dto;
 
-import java.time.LocalDateTime;
-
 import ua.tqs.project.quickserve.entities.Address;
 import ua.tqs.project.quickserve.entities.PickupMethod;
+
+import java.time.LocalDateTime;
 
 public class OrderDTO {
     LocalDateTime scheduledTime;

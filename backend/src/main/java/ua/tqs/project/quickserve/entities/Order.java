@@ -1,20 +1,19 @@
 package ua.tqs.project.quickserve.entities;
 
-import java.time.LocalDateTime;
-
 import jakarta.persistence.*;
-
-import lombok.Getter;
-import lombok.Setter;
-import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="order_")
+@Table(name = "order_")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -67,7 +66,7 @@ public class Order {
     }
 
     // For data initialization purposes
-    public Order (LocalDateTime scheduledTime, double totalPrice, Address deliveryAddress, Restaurant restaurant, User user, PickupMethod pickupMethod, Status status) {
+    public Order(LocalDateTime scheduledTime, double totalPrice, Address deliveryAddress, Restaurant restaurant, User user, PickupMethod pickupMethod, Status status) {
         this.scheduledTime = scheduledTime;
         this.totalPrice = totalPrice;
         this.deliveryAddress = deliveryAddress;

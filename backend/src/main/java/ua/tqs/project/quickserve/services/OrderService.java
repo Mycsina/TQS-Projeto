@@ -1,20 +1,18 @@
 package ua.tqs.project.quickserve.services;
 
-import java.util.List;
-
-import org.springframework.stereotype.Service;
-
 import lombok.AllArgsConstructor;
-
-import ua.tqs.project.quickserve.entities.Order;
+import org.springframework.stereotype.Service;
 import ua.tqs.project.quickserve.dto.FullOrderDTO;
+import ua.tqs.project.quickserve.entities.Order;
 import ua.tqs.project.quickserve.entities.Status;
 import ua.tqs.project.quickserve.repositories.OrderRepository;
+
+import java.util.List;
 
 @Service
 @AllArgsConstructor
 public class OrderService {
-    
+
     private OrderRepository repository;
 
     public List<Order> getOrdersByStatus(Status status) {

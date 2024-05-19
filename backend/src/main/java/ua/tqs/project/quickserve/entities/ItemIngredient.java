@@ -1,18 +1,17 @@
 package ua.tqs.project.quickserve.entities;
 
 import jakarta.persistence.*;
-
-import lombok.Getter;
-import lombok.Setter;
-import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="itemIngredient")
+@Table(name = "itemIngredient")
 public class ItemIngredient {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -28,7 +27,7 @@ public class ItemIngredient {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "item_id", nullable = true)
     private Item item;
-    
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "orderItem_id", nullable = true)
     private OrderItem orderItem;
