@@ -117,4 +117,18 @@ class OrderItemRepositoryTest {
         orderItemRepository.delete(orderItem);
         assertThat(orderItemRepository.findById(id)).isEmpty();
     }
+
+    @Test
+    void whenFindByOrderIdthenReturnOrderItems() {
+        OrderItem orderItem1 = new OrderItem(5.0, item, order);
+        OrderItem orderItem2 = new OrderItem(6.0, item, order);
+        OrderItem orderItem3 = new OrderItem(7.0, item, order);
+        entityManager.persist(orderItem1);
+        entityManager.persist(orderItem2);
+        entityManager.persist(orderItem3);
+        entityManager.flush();
+        
+        List<OrderItem> found = orderItemRepository.findByOrderId(order.getId());
+        assertThat(found).hasSize(3);
+    }
 }

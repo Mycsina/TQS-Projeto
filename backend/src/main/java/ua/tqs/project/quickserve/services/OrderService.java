@@ -12,7 +12,6 @@ import lombok.AllArgsConstructor;
 import ua.tqs.project.quickserve.entities.ItemIngredient;
 import ua.tqs.project.quickserve.entities.OrderItem;
 import ua.tqs.project.quickserve.entities.Order;
-import ua.tqs.project.quickserve.dto.BaseOrderDTO;
 import ua.tqs.project.quickserve.dto.OrderDTO;
 import ua.tqs.project.quickserve.dto.ItemIngredientDTO;
 import ua.tqs.project.quickserve.entities.Status;

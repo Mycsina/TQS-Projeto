@@ -57,6 +57,16 @@ public class Order {
         this.pickupMethod = pickupMethod;
     }
 
+    // For data initialization purposes
+    public Order(LocalDateTime scheduledTime, double totalPrice, Restaurant restaurant, User user, PickupMethod pickupMethod, Status status) {
+        this.scheduledTime = scheduledTime;
+        this.totalPrice = totalPrice;
+        this.restaurant = restaurant;
+        this.user = user;
+        this.pickupMethod = pickupMethod;
+        this.status = status;
+    }
+
     public Order(LocalDateTime scheduledTime, double totalPrice, Address deliveryAddress, Restaurant restaurant, User user, PickupMethod pickupMethod) {
         this.scheduledTime = scheduledTime;
         this.totalPrice = totalPrice;

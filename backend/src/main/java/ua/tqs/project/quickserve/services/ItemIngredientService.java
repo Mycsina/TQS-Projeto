@@ -1,6 +1,7 @@
 package ua.tqs.project.quickserve.services; 
 
 import java.util.List;
+import java.util.ArrayList;
 
 import org.springframework.stereotype.Service;
 
@@ -20,7 +21,7 @@ public class ItemIngredientService {
 
     public List<ItemIngredient> getOrderItemIngredients(long orderItemId) {
         OrderItem orderItem = orderItemService.getOrderItemById(orderItemId);
-        List<ItemIngredient> defaultIngredients = repository.findByItemId(orderItem.getItem().getId());
+        List<ItemIngredient> defaultIngredients = new ArrayList<>(repository.findByItemId(orderItem.getItem().getId()));
         List<ItemIngredient> modifiedIngredients = repository.findByOrderItemId(orderItemId);
 
         for (ItemIngredient modifiedIngredient : modifiedIngredients) {

@@ -100,4 +100,18 @@ class ItemRepositoryTest {
         itemRepository.delete(item);
         assertThat(itemRepository.findById(id)).isEmpty();
     }
+
+    @Test
+    void whenFindByCategoryIdthenReturnItems() {
+        Item item1 = new Item("Big Mac", "The most famous burger in the world!", "./images/bigmacpic", 5.0, restaurant, category);
+        Item item2 = new Item("CBO", "Bacon delight!", "./images/cbopic", 7.0, restaurant, category);
+        Item item3 = new Item("McChicken", "Chicken!", "./images/mcchickenpic", 4.5, restaurant, category);
+        entityManager.persist(item1);
+        entityManager.persist(item2);
+        entityManager.persist(item3);
+        entityManager.flush();
+        
+        List<Item> found = itemRepository.findByCategoryId(category.getId());
+        assertThat(found).hasSize(3);
+    }
 }

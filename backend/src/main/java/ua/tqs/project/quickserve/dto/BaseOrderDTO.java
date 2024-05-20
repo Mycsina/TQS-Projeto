@@ -4,10 +4,15 @@ import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import ua.tqs.project.quickserve.entities.Order;
 import ua.tqs.project.quickserve.entities.Address;
 import ua.tqs.project.quickserve.entities.PickupMethod;
 
+@Getter
+@Setter
 public class BaseOrderDTO {
     @JsonProperty("orderId")
     long orderId;

@@ -105,4 +105,16 @@ class OrderRepositoryTest {
         orderRepository.delete(order);
         assertThat(orderRepository.findById(id)).isEmpty();
     }
+
+    @Test
+    void whenFindByStatusthenReturnOrders() {
+        Order order1 = new Order(LocalDateTime.now(), 5.0, deliveryAddress, restaurant, client, PickupMethod.DELIVERY, Status.IN_MAKING);
+        Order order2 = new Order(LocalDateTime.now(), 5.0, restaurant, client, PickupMethod.AT_RESTAURANT, Status.DELIVERED);
+        entityManager.persist(order1);
+        entityManager.persist(order2);
+        entityManager.flush();
+        
+        List<Order> found = orderRepository.findByStatus(Status.IN_MAKING);
+        assertThat(found).hasSize(1);
+    }
 }
