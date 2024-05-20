@@ -1,7 +1,7 @@
 name: SonarCloud
 on:
   push:
-    branches: [ develop, master ]
+    branches: [ develop, master, SCRUM-* ]
   pull_request:
     types: [opened, synchronize, reopened]
 jobs:
