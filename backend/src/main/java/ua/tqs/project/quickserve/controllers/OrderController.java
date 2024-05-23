@@ -15,7 +15,7 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/api/order")
+@RequestMapping("/api/${app.api.version}/orders")
 @Tag(name = "Order", description = "Operations pertaining to orders")
 public class OrderController {
 

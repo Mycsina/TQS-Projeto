@@ -9,7 +9,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-@Table(name = "user_")
+@Table(name = "userEntity")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -32,12 +32,12 @@ public class User {
     private int phone;
 
     @ManyToOne
-    @JoinColumn(name = "address_id", nullable = true)
+    @JoinColumn(name = "address_id")
     private Address address;
     // Client Side
 
     @ManyToOne
-    @JoinColumn(name = "restaurant_id", nullable = true)
+    @JoinColumn(name = "restaurant_id")
     private Restaurant restaurant;
     // Manager Side
 
@@ -58,12 +58,4 @@ public class User {
         this.address = address;
     }
 
-    public User(String name, String password, RoleEnum role, String email, int phone, Restaurant restaurant) {
-        this.name = name;
-        this.password = password;
-        this.role = role;
-        this.email = email;
-        this.phone = phone;
-        this.restaurant = restaurant;
-    }
 }

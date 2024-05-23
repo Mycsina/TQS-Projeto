@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.proxy.HibernateProxy;
 
 import java.time.LocalDateTime;
 
@@ -13,7 +14,7 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "order_")
+@Table(name = "orderEntity")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -29,7 +30,7 @@ public class Order {
     private double totalPrice;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "address_id", nullable = true)
+    @JoinColumn(name = "address_id")
     private Address deliveryAddress;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -48,23 +49,6 @@ public class Order {
     @Enumerated(EnumType.STRING)
     private Status status = Status.SCHEDULED;
 
-    public Order(LocalDateTime scheduledTime, double totalPrice, Restaurant restaurant, User user, PickupMethod pickupMethod) {
-        this.scheduledTime = scheduledTime;
-        this.totalPrice = totalPrice;
-        this.restaurant = restaurant;
-        this.user = user;
-        this.pickupMethod = pickupMethod;
-    }
-
-    public Order(LocalDateTime scheduledTime, double totalPrice, Address deliveryAddress, Restaurant restaurant, User user, PickupMethod pickupMethod) {
-        this.scheduledTime = scheduledTime;
-        this.totalPrice = totalPrice;
-        this.deliveryAddress = deliveryAddress;
-        this.restaurant = restaurant;
-        this.user = user;
-        this.pickupMethod = pickupMethod;
-    }
-
     // For data initialization purposes
     public Order(LocalDateTime scheduledTime, double totalPrice, Address deliveryAddress, Restaurant restaurant, User user, PickupMethod pickupMethod, Status status) {
         this.scheduledTime = scheduledTime;
@@ -74,5 +58,21 @@ public class Order {
         this.user = user;
         this.pickupMethod = pickupMethod;
         this.status = status;
+    }
+
+    @Override
+    public final boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null) return false;
+        Class<?> oEffectiveClass = o instanceof HibernateProxy ? ((HibernateProxy) o).getHibernateLazyInitializer().getPersistentClass() : o.getClass();
+        Class<?> thisEffectiveClass = this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass() : this.getClass();
+        if (thisEffectiveClass != oEffectiveClass) return false;
+        Order order = (Order) o;
+        return false;
+    }
+
+    @Override
+    public final int hashCode() {
+        return this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass().hashCode() : getClass().hashCode();
     }
 }
