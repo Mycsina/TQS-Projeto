@@ -20,4 +20,7 @@ public class IngredientDTO {
         this.name = ingredient.getName();
         this.restaurantId = ingredient.getRestaurant().getId();
     }
+
+    public IngredientDTO() {
+    }
 }

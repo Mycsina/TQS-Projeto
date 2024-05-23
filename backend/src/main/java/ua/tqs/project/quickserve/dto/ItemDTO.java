@@ -23,4 +23,7 @@ public class ItemDTO {
         this.restaurantId = item.getRestaurant().getId();
         this.categoryId = item.getCategory().getId();
     }
+
+    public ItemDTO() {
+    }
 }

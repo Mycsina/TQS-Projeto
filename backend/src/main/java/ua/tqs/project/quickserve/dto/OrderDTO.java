@@ -21,4 +21,7 @@ public class OrderDTO {
         this.order = new BaseOrderDTO(order);
         this.itemIngredients = itemIngredients;
     }
+
+    public OrderDTO() {
+    }
 }

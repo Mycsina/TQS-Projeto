@@ -14,6 +14,9 @@ public class ItemIngredientDTO {
     IngredientDTO ingredientDTO;
     int quantity;
 
+    public ItemIngredientDTO() {
+    }
+
     public ItemIngredientDTO(ItemDTO itemDTO, IngredientDTO ingredientDTO, int quantity) {
         this.itemDTO = itemDTO;
         this.ingredientDTO = ingredientDTO;
