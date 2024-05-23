@@ -26,17 +26,24 @@ public class DataInitializer implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        // Restaurant
+        // Restaurant 1
         Address a1 = new Address("Rua do Amial", "Porto", "4200-055", "Portugal");
         Menu m1 = new Menu();
         Restaurant r1 = new Restaurant("McDonald's", "Number 1 in the fast food industry!", 123123123, State.OPEN, a1, m1);
         r1.setTimes(LocalTime.of(10, 0, 0), LocalTime.of(4, 0, 0));
+
+        // Restaurant 2
+        Address a3 = new Address("Rua do Amial", "Porto", "4200-055", "Portugal");
+        Menu m2 = new Menu();
+        Restaurant r2 = new Restaurant("Burger King", "Number 2 in the fast food industry!", 123123123, State.OPEN, a3, m2);
+        r2.setTimes(LocalTime.of(10, 0, 0), LocalTime.of(4, 0, 0));
 
         // Category
         Category c1 = new Category("Burgers", m1);
 
         // Items
         Item i1 = new Item("Big Mac", "The most famous burger in the world!", "./images/bigmacpic", 5.0, r1, c1);
+        Item i2 = new Item("Whopper", "The most famous burger in the world!", "./images/whopperpic", 5.0, r2, c1);
 
         // Ingredients
         Ingredient ing1 = new Ingredient("Bread", 0.5, false, r1);
@@ -55,6 +62,13 @@ public class DataInitializer implements CommandLineRunner {
         ItemIngredient ii5 = new ItemIngredient(1, true, i1, ing5);
         ItemIngredient ii6 = new ItemIngredient(1, true, i1, ing6);
         ItemIngredient ii7 = new ItemIngredient(1, true, i1, ing7);
+
+        ItemIngredient ii8 = new ItemIngredient(2, true, i2, ing1);
+        ItemIngredient ii9 = new ItemIngredient(2, true, i2, ing2);
+        ItemIngredient ii10 = new ItemIngredient(1, true, i2, ing3);
+        ItemIngredient ii11 = new ItemIngredient(1, true, i2, ing4);
+        ItemIngredient ii12 = new ItemIngredient(1, true, i2, ing5);
+        ItemIngredient ii13 = new ItemIngredient(1, true, i2, ing6);
 
         // Users
         Address a2 = new Address("Casa do Joao", "Porto", "4200-055", "Portugal");
@@ -93,5 +107,15 @@ public class DataInitializer implements CommandLineRunner {
         userRepository.save(u2);
         orderRepository.save(o1);
         orderItemRepository.save(oi1);
+        addressRepository.save(a3);
+        menuRepository.save(m2);
+        restaurantRepository.save(r2);
+        itemRepository.save(i2);
+        itemIngredientRepository.save(ii8);
+        itemIngredientRepository.save(ii9);
+        itemIngredientRepository.save(ii10);
+        itemIngredientRepository.save(ii11);
+        itemIngredientRepository.save(ii12);
+        itemIngredientRepository.save(ii13);
     }
 }
