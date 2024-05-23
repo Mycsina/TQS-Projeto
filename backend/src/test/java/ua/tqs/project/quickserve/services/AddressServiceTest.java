@@ -34,8 +34,8 @@ class AddressServiceTest {
 
     @BeforeEach
     public void setUp() {
-        Address address1 = new Address("Rua do Amial", "Porto", "4200-055", "Portugal"); address1.setId(1L);
-        Address address2 = new Address("Rua do Abc", "Viseu", "3323-231", "Portugal"); address2.setId(2L);
+        Address address1 = new Address(1L,"Rua do Amial", "Porto", "4200-055", "Portugal");
+        Address address2 = new Address(1L,"Rua do Abc", "Viseu", "3323-231", "Portugal", "State"); address2.setId(2L);
         Address address3 = new Address("Rua do Xyz", "Lisboa", "1234-567", "Portugal"); address3.setId(3L);
 
         List<Address> allAddresss = Arrays.asList(address1, address2, address3);

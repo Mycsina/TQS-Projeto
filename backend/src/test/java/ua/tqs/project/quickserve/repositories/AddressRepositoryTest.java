@@ -30,6 +30,7 @@ class AddressRepositoryTest {
     @DisplayName("Find Address By Id")
     void whenFindAddressByIdthenReturnAddress() {
         Address address = new Address("Rua do Zé", "Porto", "4000-000", "Portugal");
+        address.setState("State");
 
         entityManager.persistAndFlush(address); //ensure data is persisted at this point
 
@@ -38,6 +39,7 @@ class AddressRepositoryTest {
         
         assertThat(found).isNotNull();
         assertThat(found.getCity()).isEqualTo("Porto");
+        assertThat(found.getState()).isEqualTo("State");
     }
 
     @Test
@@ -50,6 +52,7 @@ class AddressRepositoryTest {
         
         List<Address> found = addressRepository.findAll();
         assertThat(found).hasSize(2);
+        assertThat(found.get(0).getStreet()).isEqualTo("Rua do Zé");
     }
 
     @Test 
@@ -59,6 +62,7 @@ class AddressRepositoryTest {
 
         addressRepository.save(address);
         assertThat(addressRepository.findById(id)).isNotNull();
+        assertThat(addressRepository.findById(id).get().getPostalCode()).isEqualTo("2000-000");
     }
 
     @Test
@@ -68,6 +72,7 @@ class AddressRepositoryTest {
         long id = address.getId();
 
         assertThat(addressRepository.findById(id)).isNotNull();
+        assertThat(addressRepository.findById(id).get().getCountry()).isEqualTo("Portugal");
         addressRepository.delete(address);
         assertThat(addressRepository.findById(id)).isEmpty();
     }
