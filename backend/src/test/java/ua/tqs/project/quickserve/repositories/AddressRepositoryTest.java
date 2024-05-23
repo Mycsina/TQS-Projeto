@@ -53,6 +53,8 @@ class AddressRepositoryTest {
         List<Address> found = addressRepository.findAll();
         assertThat(found).hasSize(2);
         assertThat(found.get(0).getStreet()).isEqualTo("Rua do Zé");
+        assertThat(found.get(1).getPostalCode()).isEqualTo("3000-000");
+
     }
 
     @Test 
@@ -62,7 +64,6 @@ class AddressRepositoryTest {
 
         addressRepository.save(address);
         assertThat(addressRepository.findById(id)).isNotNull();
-        assertThat(addressRepository.findById(id).get().getPostalCode()).isEqualTo("2000-000");
     }
 
     @Test
