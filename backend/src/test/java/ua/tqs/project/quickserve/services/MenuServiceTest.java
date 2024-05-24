@@ -7,6 +7,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.mockito.junit.jupiter.MockitoSettings;
+import org.mockito.quality.Strictness;
+
 import ua.tqs.project.quickserve.entities.Menu;
 import ua.tqs.project.quickserve.repositories.MenuRepository;
 
@@ -23,10 +26,11 @@ import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.times;
 
 @ExtendWith(MockitoExtension.class)
+@MockitoSettings(strictness = Strictness.LENIENT)
 class MenuServiceTest {
     protected static final Logger logger = LogManager.getLogger(MenuServiceTest.class);
 
-    @Mock( lenient = true)
+    @Mock
     private MenuRepository menuRepository;
 
     @InjectMocks

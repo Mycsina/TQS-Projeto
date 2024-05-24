@@ -2,11 +2,9 @@ package ua.tqs.project.quickserve.controllers;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
-//import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-//import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import ua.tqs.project.quickserve.services.OrderService;
 import ua.tqs.project.quickserve.entities.Order;
@@ -14,19 +12,12 @@ import ua.tqs.project.quickserve.dto.OrderDTO;
 import ua.tqs.project.quickserve.entities.Status;
 
 import io.restassured.module.mockmvc.RestAssuredMockMvc;
-//import static io.restassured.RestAssured.*;
-//import static io.restassured.matcher.RestAssuredMatchers.*;
 import static org.hamcrest.Matchers.*;
 
 import java.util.Arrays;
 import java.util.List;
 
-//import static org.hamcrest.CoreMatchers.is;
 import static org.mockito.Mockito.*;
-//import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-//import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-//import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-//import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(OrderController.class)
 class OrderControllerTest {
@@ -43,7 +34,7 @@ class OrderControllerTest {
     }
 
     @Test
-    void whenGetAllOrdersthenGetOrders( ) throws Exception {
+    void whenGetAllOrdersthenGetOrders( ) {
         Order someOrder = new Order();
         Order otherOrder = new Order();
 
@@ -68,7 +59,7 @@ class OrderControllerTest {
     }
 
     @Test
-    void whenGetOrderByIdthenGetOrder( ) throws Exception {
+    void whenGetOrderByIdthenGetOrder( ) {
         Order someOrder = new Order();
         OrderDTO someOrderDTO = new OrderDTO();
 
@@ -84,7 +75,7 @@ class OrderControllerTest {
     }
 
     @Test
-    void whenGetInMakingOrdersthenGetOrders( ) throws Exception {
+    void whenGetInMakingOrdersthenGetOrders( ) {
         Order someOrder = new Order();
         someOrder.setStatus(Status.IN_MAKING);
         Order otherOrder = new Order();

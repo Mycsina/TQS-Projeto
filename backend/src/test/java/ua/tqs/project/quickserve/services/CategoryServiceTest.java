@@ -7,6 +7,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.mockito.junit.jupiter.MockitoSettings;
+import org.mockito.quality.Strictness;
+
 import ua.tqs.project.quickserve.entities.Category;
 import ua.tqs.project.quickserve.entities.Menu;
 import ua.tqs.project.quickserve.repositories.CategoryRepository;
@@ -24,10 +27,11 @@ import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.times;
 
 @ExtendWith(MockitoExtension.class)
+@MockitoSettings(strictness = Strictness.LENIENT)
 class CategoryServiceTest {
     protected static final Logger logger = LogManager.getLogger(CategoryServiceTest.class);
 
-    @Mock( lenient = true)
+    @Mock
     private CategoryRepository categoryRepository;
 
     @InjectMocks

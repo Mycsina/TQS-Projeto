@@ -7,6 +7,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.mockito.junit.jupiter.MockitoSettings;
+import org.mockito.quality.Strictness;
 
 import ua.tqs.project.quickserve.entities.Address;
 import ua.tqs.project.quickserve.entities.Order;
@@ -34,16 +36,17 @@ import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.times;
 
 @ExtendWith(MockitoExtension.class)
+@MockitoSettings(strictness = Strictness.LENIENT)
 class OrderServiceTest {
     protected static final Logger logger = LogManager.getLogger(OrderServiceTest.class);
 
-    @Mock( lenient = true)
+    @Mock
     private OrderRepository orderRepository;
 
-    @Mock( lenient = true)
+    @Mock
     private OrderItemService orderItemService;
 
-    @Mock( lenient = true)
+    @Mock
     private ItemIngredientService itemIngredientService;
 
     @InjectMocks
