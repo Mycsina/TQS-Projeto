@@ -1,6 +1,14 @@
 import OrderCard from "@/components/menu/orderCard";
+import { getAllOrders } from "@/server/OrderData";
+import { redirect } from "next/navigation";
 
-export default function DashBoard() {
+export default async function DashBoard() {
+    const data = await getAllOrders();
+
+    if (data === null) {
+        return redirect("/not-found");
+    }
+
     return (
         <div className="flex justify-between h-full min-h-screen">
             <div className="flex flex-col">
