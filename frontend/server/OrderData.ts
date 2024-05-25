@@ -17,3 +17,18 @@ export async function getAllOrders() {
         return null;
     }
 }
+
+export async function getInMaking() {
+    try {
+        const data = await fetch(`${API_URL}/api/order/inmaking`);
+
+        if (data.status !== 200) {
+            return null;
+        }
+
+        return await data.json() as Order[];
+    } catch (e) {
+        console.log(e);
+        return null;
+    }
+}

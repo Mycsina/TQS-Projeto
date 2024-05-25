@@ -1,9 +1,9 @@
 import OrderCard from "@/components/menu/orderCard";
-import { getAllOrders } from "@/server/OrderData";
+import { getInMaking } from "@/server/OrderData";
 import { redirect } from "next/navigation";
 
 export default async function DashBoard() {
-    const data = await getAllOrders();
+    const data = await getInMaking();
 
     if (data === null) {
         // TODO: Show an error
@@ -17,7 +17,7 @@ export default async function DashBoard() {
                 <div className="grid gap-8 lg:grid-cols-3">
                     {
                         data.map((order, index) => (
-                            <OrderCard key={index} order={order}/>
+                            <OrderCard key={index} order={order} />
                         ))
                     }
                 </div>
