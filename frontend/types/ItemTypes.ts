@@ -1,6 +1,6 @@
 export type ItemIngredients = {
-    item: Item,
-    ingredients: Ingredients,
+    itemDTO: Item,
+    ingredientDTO: Ingredients,
     quantity: number
 }
 
