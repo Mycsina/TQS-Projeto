@@ -34,6 +34,6 @@ elif [ "$1" == "nextjs" ]; then
 #elif [ "$1" == "nginx" ]; then
 #    build_images "$nginx" "$nginx_name"
 else
-    echo "Invalid argument. Usage: $0 [all | dir1 | dir2]"
+    echo "Invalid argument. Usage: $0 [all | api | nextjs | nginx]"
     exit 1
 fi
