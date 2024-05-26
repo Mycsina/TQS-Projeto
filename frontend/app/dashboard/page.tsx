@@ -2,6 +2,8 @@ import OrderCard from "@/components/menu/orderCard";
 import { getInMaking } from "@/server/OrderData";
 import { redirect } from "next/navigation";
 
+export const revalidate = 0;
+
 export default async function DashBoard() {
     const data = await getInMaking();
 
