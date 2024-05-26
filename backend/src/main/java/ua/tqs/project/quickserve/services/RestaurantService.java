@@ -1,16 +1,14 @@
-package ua.tqs.project.quickserve.services; 
-
-import org.springframework.stereotype.Service;
+package ua.tqs.project.quickserve.services;
 
 import lombok.AllArgsConstructor;
-
+import org.springframework.stereotype.Service;
 import ua.tqs.project.quickserve.entities.Restaurant;
 import ua.tqs.project.quickserve.repositories.RestaurantRepository;
 
 @Service
 @AllArgsConstructor
 public class RestaurantService {
-    
+
     private RestaurantRepository repository;
 
     public Restaurant save(Restaurant restaurant) {

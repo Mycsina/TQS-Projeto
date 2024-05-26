@@ -1,18 +1,17 @@
 package ua.tqs.project.quickserve.entities;
 
 import jakarta.persistence.*;
-
-import lombok.Getter;
-import lombok.Setter;
-import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="ingredient")
+@Table(name = "ingredient")
 public class Ingredient {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -24,7 +23,7 @@ public class Ingredient {
     @Column(nullable = false)
     private double price;
     // May not be the actual price of the ingredient, but the price of adding it to an item
-    
+
     @Column(nullable = false)
     private boolean canBeChanged;
     // If the ingredient can be added or removed from an item

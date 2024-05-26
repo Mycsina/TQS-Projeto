@@ -52,7 +52,7 @@ class OrderControllerTest {
         RestAssuredMockMvc
             .given()
             .when()
-                .get("/api/order")
+                .get("/api/v1/orders")
             .then()
                 .statusCode(200)
                 .body("$", hasSize(2));
@@ -69,7 +69,7 @@ class OrderControllerTest {
         RestAssuredMockMvc
             .given()
             .when()
-                .get("/api/order/1")
+                .get("/api/v1/orders/1")
             .then()
                 .statusCode(200);
     }
@@ -95,7 +95,7 @@ class OrderControllerTest {
         RestAssuredMockMvc
             .given()
             .when()
-                .get("/api/order/inmaking")
+                .get("/api/v1/orders/inmaking")
             .then()
                 .statusCode(200)
                 .body("$", hasSize(2));

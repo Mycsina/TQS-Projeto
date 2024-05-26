@@ -36,7 +36,7 @@ class AddressRepositoryTest {
 
         long id = address.getId();
         Address found = addressRepository.findById(id).orElse(null);
-        
+
         assertThat(found).isNotNull();
         assertThat(found.getCity()).isEqualTo("Porto");
         assertThat(found.getState()).isEqualTo("State");

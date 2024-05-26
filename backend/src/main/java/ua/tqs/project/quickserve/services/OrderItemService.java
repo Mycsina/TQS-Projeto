@@ -1,18 +1,17 @@
-package ua.tqs.project.quickserve.services; 
+package ua.tqs.project.quickserve.services;
 
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
-
 import ua.tqs.project.quickserve.entities.OrderItem;
 import ua.tqs.project.quickserve.repositories.OrderItemRepository;
 
 @Service
 @AllArgsConstructor
 public class OrderItemService {
-    
+
     private OrderItemRepository repository;
 
     public List<OrderItem> getOrderItemsByOrderId(long orderId) {

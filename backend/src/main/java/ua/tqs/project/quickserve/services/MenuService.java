@@ -1,16 +1,14 @@
-package ua.tqs.project.quickserve.services; 
-
-import org.springframework.stereotype.Service;
+package ua.tqs.project.quickserve.services;
 
 import lombok.AllArgsConstructor;
-
+import org.springframework.stereotype.Service;
 import ua.tqs.project.quickserve.entities.Menu;
 import ua.tqs.project.quickserve.repositories.MenuRepository;
 
 @Service
 @AllArgsConstructor
 public class MenuService {
-    
+
     private MenuRepository repository;
 
     public Menu save(Menu menu) {

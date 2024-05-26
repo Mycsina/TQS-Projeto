@@ -1,16 +1,15 @@
 package ua.tqs.project.quickserve.entities;
 
 import jakarta.persistence.*;
-
 import lombok.Getter;
-import lombok.Setter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
-@Table(name="user_")
+@Table(name = "userEntity")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -32,11 +31,16 @@ public class User {
     @Column(nullable = false)
     private int phone;
 
-    @OneToOne
-    @JoinColumn(name = "address_id", nullable = true)
+    @ManyToOne
+    @JoinColumn(name = "address_id")
     private Address address;
     // Client Side
-    
+
+    @ManyToOne
+    @JoinColumn(name = "restaurant_id")
+    private Restaurant restaurant;
+    // Manager Side
+
     public User(String name, String password, RoleEnum role, String email, int phone) {
         this.name = name;
         this.password = password;
@@ -53,4 +57,5 @@ public class User {
         this.phone = phone;
         this.address = address;
     }
+
 }

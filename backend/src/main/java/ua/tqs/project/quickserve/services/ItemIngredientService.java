@@ -1,4 +1,4 @@
-package ua.tqs.project.quickserve.services; 
+package ua.tqs.project.quickserve.services;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -14,7 +14,7 @@ import ua.tqs.project.quickserve.repositories.ItemIngredientRepository;
 @Service
 @AllArgsConstructor
 public class ItemIngredientService {
-    
+
     private ItemIngredientRepository repository;
 
     private OrderItemService orderItemService;

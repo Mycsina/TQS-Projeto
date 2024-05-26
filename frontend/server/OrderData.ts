@@ -5,7 +5,7 @@ import { API_URL } from "@/lib/consts";
 
 export async function getAllOrders() {
     try {
-        const data = await fetch(`${API_URL}/api/order`);
+        const data = await fetch(`${API_URL}/api/v1/orders`);
 
         if (data.status !== 200) {
             return null;
@@ -20,7 +20,7 @@ export async function getAllOrders() {
 
 export async function getInMaking() {
     try {
-        const data = await fetch(`${API_URL}/api/order/inmaking`, { cache: 'no-store' });
+        const data = await fetch(`${API_URL}/api/v1/orders/inmaking`, { cache: 'no-store' });
 
         if (data.status !== 200) {
             return null;
