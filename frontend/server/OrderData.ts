@@ -20,7 +20,7 @@ export async function getAllOrders() {
 
 export async function getInMaking() {
     try {
-        const data = await fetch(`${API_URL}/api/order/inmaking`);
+        const data = await fetch(`${API_URL}/api/order/inmaking`, { cache: 'no-store' });
 
         if (data.status !== 200) {
             return null;
