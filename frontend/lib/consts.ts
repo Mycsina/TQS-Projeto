@@ -1,1 +1,1 @@
-export const API_URL = "http://api:8080"
+export const API_URL = process.env.NEXT_PUBLIC_SERVER_IP;
