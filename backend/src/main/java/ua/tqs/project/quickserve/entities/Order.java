@@ -29,15 +29,15 @@ public class Order {
     @Column(nullable = false)
     private double totalPrice;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToOne
     @JoinColumn(name = "address_id")
     private Address deliveryAddress;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "restaurant_id")
     private Restaurant restaurant;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
@@ -48,6 +48,33 @@ public class Order {
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private Status status = Status.SCHEDULED;
+
+    public Order(LocalDateTime scheduledTime, double totalPrice, Restaurant restaurant, User user, PickupMethod pickupMethod) {
+        this.scheduledTime = scheduledTime;
+        this.totalPrice = totalPrice;
+        this.restaurant = restaurant;
+        this.user = user;
+        this.pickupMethod = pickupMethod;
+    }
+
+    // For data initialization purposes
+    public Order(LocalDateTime scheduledTime, double totalPrice, Restaurant restaurant, User user, PickupMethod pickupMethod, Status status) {
+        this.scheduledTime = scheduledTime;
+        this.totalPrice = totalPrice;
+        this.restaurant = restaurant;
+        this.user = user;
+        this.pickupMethod = pickupMethod;
+        this.status = status;
+    }
+
+    public Order(LocalDateTime scheduledTime, double totalPrice, Address deliveryAddress, Restaurant restaurant, User user, PickupMethod pickupMethod) {
+        this.scheduledTime = scheduledTime;
+        this.totalPrice = totalPrice;
+        this.deliveryAddress = deliveryAddress;
+        this.restaurant = restaurant;
+        this.user = user;
+        this.pickupMethod = pickupMethod;
+    }
 
     // For data initialization purposes
     public Order(LocalDateTime scheduledTime, double totalPrice, Address deliveryAddress, Restaurant restaurant, User user, PickupMethod pickupMethod, Status status) {

@@ -18,33 +18,33 @@ public class ItemIngredient {
     private long id;
 
     @Column(nullable = false)
-    private int quantity;
+    private int ingredientQuantity;
 
     @Column(nullable = false)
     private boolean isDefault;
     // Whether the item ingredient has a default quantity or not
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "item_id", nullable = true)
     private Item item;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "orderItem_id", nullable = true)
     private OrderItem orderItem;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "ingredient_id")
     private Ingredient ingredient;
 
-    public ItemIngredient(int quantity, boolean isDefault, Item item, Ingredient ingredient) {
-        this.quantity = quantity;
+    public ItemIngredient(int ingredientQuantity, boolean isDefault, Item item, Ingredient ingredient) {
+        this.ingredientQuantity = ingredientQuantity;
         this.isDefault = isDefault;
         this.item = item;
         this.ingredient = ingredient;
     }
 
-    public ItemIngredient(int quantity, boolean isDefault, OrderItem orderItem, Ingredient ingredient) {
-        this.quantity = quantity;
+    public ItemIngredient(int ingredientQuantity, boolean isDefault, OrderItem orderItem, Ingredient ingredient) {
+        this.ingredientQuantity = ingredientQuantity;
         this.isDefault = isDefault;
         this.orderItem = orderItem;
         this.ingredient = ingredient;

@@ -1,6 +1,36 @@
 package ua.tqs.project.quickserve;
 
 import lombok.AllArgsConstructor;
+
+import java.time.LocalTime;
+import java.time.LocalDateTime;
+
+import ua.tqs.project.quickserve.entities.Ingredient;
+import ua.tqs.project.quickserve.entities.ItemIngredient;
+import ua.tqs.project.quickserve.entities.Address;
+import ua.tqs.project.quickserve.entities.Category;
+import ua.tqs.project.quickserve.entities.Item;
+import ua.tqs.project.quickserve.entities.Menu;
+import ua.tqs.project.quickserve.entities.Order;
+import ua.tqs.project.quickserve.entities.OrderItem;
+import ua.tqs.project.quickserve.entities.Restaurant;
+import ua.tqs.project.quickserve.entities.RoleEnum;
+import ua.tqs.project.quickserve.entities.State;
+import ua.tqs.project.quickserve.entities.User;
+import ua.tqs.project.quickserve.entities.PickupMethod;
+import ua.tqs.project.quickserve.entities.Status;
+
+import ua.tqs.project.quickserve.repositories.AddressRepository;
+import ua.tqs.project.quickserve.repositories.CategoryRepository;
+import ua.tqs.project.quickserve.repositories.ItemIngredientRepository;
+import ua.tqs.project.quickserve.repositories.ItemRepository;
+import ua.tqs.project.quickserve.repositories.IngredientRepository;
+import ua.tqs.project.quickserve.repositories.MenuRepository;
+import ua.tqs.project.quickserve.repositories.OrderItemRepository;
+import ua.tqs.project.quickserve.repositories.OrderRepository;
+import ua.tqs.project.quickserve.repositories.RestaurantRepository;
+import ua.tqs.project.quickserve.repositories.UserRepository;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import ua.tqs.project.quickserve.entities.*;
@@ -29,13 +59,15 @@ public class DataInitializer implements CommandLineRunner {
         // Restaurant 1
         Address a1 = new Address("Rua do Amial", "Porto", "4200-055", "Portugal");
         Menu m1 = new Menu();
-        Restaurant r1 = new Restaurant("McDonald's", "Number 1 in the fast food industry!", 123123123, State.OPEN, a1, m1);
+        User u2 = new User("McDonald's Manager", "1234", RoleEnum.MANAGER, "mcdonalds.mc.pt", 123123123);
+        Restaurant r1 = new Restaurant("McDonald's", "Number 1 in the fast food industry!", 123123123, State.OPEN, a1, m1, u2);
         r1.setTimes(LocalTime.of(10, 0, 0), LocalTime.of(4, 0, 0));
 
         // Restaurant 2
+        User u3 = new User("Burger Kings's Manager", "1234", RoleEnum.MANAGER, "mcdonalds.mc.pt", 123123123);
         Address a3 = new Address("Rua do Amial", "Porto", "4200-055", "Portugal");
         Menu m2 = new Menu();
-        Restaurant r2 = new Restaurant("Burger King", "Number 2 in the fast food industry!", 123123123, State.OPEN, a3, m2);
+        Restaurant r2 = new Restaurant("Burger King", "Number 2 in the fast food industry!", 123123123, State.OPEN, a3, m2, u3);
         r2.setTimes(LocalTime.of(10, 0, 0), LocalTime.of(4, 0, 0));
 
         // Category
@@ -74,8 +106,6 @@ public class DataInitializer implements CommandLineRunner {
         Address a2 = new Address("Casa do Joao", "Porto", "4200-055", "Portugal");
         User u1 = new User("Joao", "1234", RoleEnum.CLIENT, "joao@joao.pt", 123123123, a2);
 
-        User u2 = new User("McDonald's Manager", "1234", RoleEnum.MANAGER, "mcdonalds.mc.pt", 123123123);
-
         // Order
         Order o1 = new Order(LocalDateTime.now(), 5.0, a2, r1, u1, PickupMethod.DELIVERY, Status.IN_MAKING);
 
@@ -85,10 +115,29 @@ public class DataInitializer implements CommandLineRunner {
         // Save
         addressRepository.save(a1);
         addressRepository.save(a2);
+        userRepository.save(u1);
+        userRepository.save(u2);
+        userRepository.save(u3);
+        addressRepository.save(a1);
+        addressRepository.save(a2);
         menuRepository.save(m1);
         restaurantRepository.save(r1);
         categoryRepository.save(c1);
         itemRepository.save(i1);
+        ingredientRepository.save(ing1);
+        ingredientRepository.save(ing2);
+        ingredientRepository.save(ing3);
+        ingredientRepository.save(ing4);
+        ingredientRepository.save(ing5);
+        ingredientRepository.save(ing6);
+        ingredientRepository.save(ing7);
+        itemIngredientRepository.save(ii1);
+        itemIngredientRepository.save(ii2);
+        itemIngredientRepository.save(ii3);
+        itemIngredientRepository.save(ii4);
+        itemIngredientRepository.save(ii5);
+        itemIngredientRepository.save(ii6);
+        itemIngredientRepository.save(ii7);
         ingredientRepository.save(ing1);
         ingredientRepository.save(ing2);
         ingredientRepository.save(ing3);

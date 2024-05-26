@@ -28,7 +28,7 @@ public class Ingredient {
     private boolean canBeChanged;
     // If the ingredient can be added or removed from an item
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "restaurant_id")
     private Restaurant restaurant;
 

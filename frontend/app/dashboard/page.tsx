@@ -1,29 +1,28 @@
 import OrderCard from "@/components/menu/orderCard";
+import { getInMaking } from "@/server/OrderData";
+import { redirect } from "next/navigation";
 
-export default function DashBoard() {
+export const revalidate = 0;
+
+export default async function DashBoard() {
+    const data = await getInMaking();
+
+    if (data === null) {
+        // TODO: Show an error
+        return redirect("/not-found");
+    }
+
     return (
-        <div className="flex justify-between h-full min-h-screen">
+        <div className="flex justify-between h-full min-h-screen mx-auto w-fit">
             <div className="flex flex-col">
-                <h1 className="font-bold text-2xl mb-5">Incoming Orders</h1>
-                <div className="grid gap-8 lg:grid-cols-2">
+                <h1 className="font-bold text-2xl mb-5 w-max">Incoming Orders</h1>
+                <div className="grid gap-8 lg:grid-cols-3">
                     {
-                        Array(10).fill(0).map((_, index) => (
-                            <OrderCard key={index} />
+                        data.map((order, index) => (
+                            <OrderCard key={index} order={order} />
                         ))
                     }
                 </div>
-            </div>
-            <div className="bg-gray-950 w-[500px] h-full min-h-screen rounded-xl shadow-xl p-10">
-                <h1 className="text-4xl mb-10">Instructions</h1>
-                <p>Lorem Ipsum</p>
-                <p>Lorem Ipsum</p>
-                <p>Lorem Ipsum</p>
-                <p>Lorem Ipsum</p>
-                <p>Lorem Ipsum</p>
-                <p>Lorem Ipsum</p>
-                <p>Lorem Ipsum</p>
-                <p>Lorem Ipsum</p>
-                <p>Lorem Ipsum</p>
             </div>
         </div>
     );
