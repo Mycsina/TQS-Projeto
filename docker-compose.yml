@@ -41,8 +41,6 @@ services:
     container_name: nextjs
     image: quickserve-frontend:latest
     restart: unless-stopped
-    environment:
-      NEXT_PUBLIC_SERVER_IP: "http://api:8080"
     depends_on:
       - api
     ports:
