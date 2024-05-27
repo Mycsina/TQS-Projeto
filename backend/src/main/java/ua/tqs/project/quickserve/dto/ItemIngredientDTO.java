@@ -1,12 +1,15 @@
 package ua.tqs.project.quickserve.dto;
 
-import lombok.Data;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import lombok.Getter;
+import lombok.Setter;
+
 import ua.tqs.project.quickserve.entities.ItemIngredient;
 
-@Data
+@Getter
+@Setter
 public class ItemIngredientDTO {
     ItemDTO itemDTO;
     IngredientDTO ingredientDTO;
