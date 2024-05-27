@@ -4,14 +4,10 @@ import java.util.List;
 import java.util.Map;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+
 import ua.tqs.project.quickserve.entities.Order;
 
-
 @Data
-@Getter
-@Setter
 public class OrderDTO {
     // FullOrderDTO needs to consist of:
     // - the order itself

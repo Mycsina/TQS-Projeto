@@ -88,13 +88,13 @@ public class Order {
     }
 
     @Override
-    public final boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null) return false;
-        Class<?> oEffectiveClass = o instanceof HibernateProxy ? ((HibernateProxy) o).getHibernateLazyInitializer().getPersistentClass() : o.getClass();
-        Class<?> thisEffectiveClass = this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass() : this.getClass();
+    public final boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null) return false;
+        Class<?> oEffectiveClass = obj instanceof HibernateProxy o ? o.getHibernateLazyInitializer().getPersistentClass() : obj.getClass();
+        Class<?> thisEffectiveClass = this instanceof HibernateProxy thisHProxy ? thisHProxy.getHibernateLazyInitializer().getPersistentClass() : this.getClass();
         if (thisEffectiveClass != oEffectiveClass) return false;
-        Order order = (Order) o;
+        Order order = (Order) obj;
         return false;
     }
 

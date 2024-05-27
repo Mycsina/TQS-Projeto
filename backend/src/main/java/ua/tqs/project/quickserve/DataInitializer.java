@@ -5,39 +5,10 @@ import lombok.AllArgsConstructor;
 import java.time.LocalTime;
 import java.time.LocalDateTime;
 
-import ua.tqs.project.quickserve.entities.Ingredient;
-import ua.tqs.project.quickserve.entities.ItemIngredient;
-import ua.tqs.project.quickserve.entities.Address;
-import ua.tqs.project.quickserve.entities.Category;
-import ua.tqs.project.quickserve.entities.Item;
-import ua.tqs.project.quickserve.entities.Menu;
-import ua.tqs.project.quickserve.entities.Order;
-import ua.tqs.project.quickserve.entities.OrderItem;
-import ua.tqs.project.quickserve.entities.Restaurant;
-import ua.tqs.project.quickserve.entities.RoleEnum;
-import ua.tqs.project.quickserve.entities.State;
-import ua.tqs.project.quickserve.entities.User;
-import ua.tqs.project.quickserve.entities.PickupMethod;
-import ua.tqs.project.quickserve.entities.Status;
-
-import ua.tqs.project.quickserve.repositories.AddressRepository;
-import ua.tqs.project.quickserve.repositories.CategoryRepository;
-import ua.tqs.project.quickserve.repositories.ItemIngredientRepository;
-import ua.tqs.project.quickserve.repositories.ItemRepository;
-import ua.tqs.project.quickserve.repositories.IngredientRepository;
-import ua.tqs.project.quickserve.repositories.MenuRepository;
-import ua.tqs.project.quickserve.repositories.OrderItemRepository;
-import ua.tqs.project.quickserve.repositories.OrderRepository;
-import ua.tqs.project.quickserve.repositories.RestaurantRepository;
-import ua.tqs.project.quickserve.repositories.UserRepository;
-
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import ua.tqs.project.quickserve.entities.*;
 import ua.tqs.project.quickserve.repositories.*;
-
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 @Component
 @AllArgsConstructor
@@ -56,8 +27,10 @@ public class DataInitializer implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        String country = "Portugal";
+
         // Restaurant 1
-        Address a1 = new Address("Rua do Amial", "Porto", "4200-055", "Portugal");
+        Address a1 = new Address("Rua do Amial", "Porto", "4200-055", country);
         Menu m1 = new Menu();
         User u2 = new User("McDonald's Manager", "1234", RoleEnum.MANAGER, "mcdonalds.mc.pt", 123123123);
         Restaurant r1 = new Restaurant("McDonald's", "Number 1 in the fast food industry!", 123123123, State.OPEN, a1, m1, u2);
@@ -65,7 +38,7 @@ public class DataInitializer implements CommandLineRunner {
 
         // Restaurant 2
         User u3 = new User("Burger Kings's Manager", "1234", RoleEnum.MANAGER, "mcdonalds.mc.pt", 123123123);
-        Address a3 = new Address("Rua do Amial", "Porto", "4200-055", "Portugal");
+        Address a3 = new Address("Rua do Abc", "Aveiro", "4220-035", country);
         Menu m2 = new Menu();
         Restaurant r2 = new Restaurant("Burger King", "Number 2 in the fast food industry!", 123123123, State.OPEN, a3, m2, u3);
         r2.setTimes(LocalTime.of(10, 0, 0), LocalTime.of(4, 0, 0));
@@ -103,7 +76,7 @@ public class DataInitializer implements CommandLineRunner {
         ItemIngredient ii13 = new ItemIngredient(1, true, i2, ing6);
 
         // Users
-        Address a2 = new Address("Casa do Joao", "Porto", "4200-055", "Portugal");
+        Address a2 = new Address("Casa do Joao", "Viseu", "4250-055", country);
         User u1 = new User("Joao", "1234", RoleEnum.CLIENT, "joao@joao.pt", 123123123, a2);
 
         // Order
