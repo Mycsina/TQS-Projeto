@@ -1,14 +1,30 @@
-/**
- * v0 by Vercel.
- * @see https://v0.dev/t/9QT1uY111Jv
- * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
- */
-import { Label } from "@/components/ui/label"
-import { Input } from "@/components/ui/input"
-import { Button } from "@/components/ui/button"
-import Link from "next/link"
+'use client';
+
+import React from 'react';
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { signUp } from "@/server/SignUp";
 
 export default function Signup() {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const firstName = (e.currentTarget.elements.namedItem("first-name") as HTMLInputElement).value;
+    const lastName = (e.currentTarget.elements.namedItem("last-name") as HTMLInputElement).value;
+    const email = (e.currentTarget.elements.namedItem("email") as HTMLInputElement).value;
+    const password = (e.currentTarget.elements.namedItem("password") as HTMLInputElement).value;
+    const phone = (e.currentTarget.elements.namedItem("phone") as HTMLInputElement).value;
+
+    const name = `${firstName} ${lastName}`;
+    const result = await signUp(name, email, password, phone);
+    if (result) {
+      console.log(result);
+    } else {
+      console.log(result)
+    }
+  };
+
   return (
     <main className="flex h-screen w-full items-center justify-center bg-gray-950 p-4">
       <div className="w-full max-w-md space-y-6">
@@ -23,7 +39,7 @@ export default function Signup() {
             </Link>
           </div>
         </div>
-        <div className="space-y-4">
+        <form className="space-y-4" onSubmit={handleSubmit}>
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label className="text-gray-400" htmlFor="first-name">
@@ -37,6 +53,12 @@ export default function Signup() {
               </Label>
               <Input className="bg-gray-800 text-gray-50" id="last-name" placeholder="Robinson" required />
             </div>
+          </div>
+          <div className="space-y-2">
+            <Label className="text-gray-400" htmlFor="phone">
+              Phone
+            </Label>
+            <Input className="bg-gray-800 text-gray-50" id="phone" placeholder="1234567890" required />
           </div>
           <div className="space-y-2">
             <Label className="text-gray-400" htmlFor="email">
@@ -53,8 +75,8 @@ export default function Signup() {
           <Button className="w-full" type="submit">
             Sign Up
           </Button>
-        </div>
+        </form>
       </div>
     </main>
-  )
+  );
 }

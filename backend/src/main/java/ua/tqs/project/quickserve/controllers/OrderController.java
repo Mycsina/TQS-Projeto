@@ -2,7 +2,8 @@ package ua.tqs.project.quickserve.controllers;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import lombok.AllArgsConstructor;
+import lombok.extern.log4j.Log4j2;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,13 +20,18 @@ import ua.tqs.project.quickserve.services.OrderService;
 
 import java.util.List;
 
+@Log4j2
 @RestController
-@AllArgsConstructor
 @RequestMapping("/api/${app.api.version}/orders")
 @Tag(name = "Order", description = "Operations pertaining to orders")
 public class OrderController {
 
-    private OrderService service;
+    private final OrderService service;
+
+    @Autowired
+    public OrderController(OrderService service) {
+        this.service = service;
+    }
 
     @Operation(summary = "Get all orders")
     @GetMapping
