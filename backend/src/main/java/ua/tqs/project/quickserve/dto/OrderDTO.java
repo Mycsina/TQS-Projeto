@@ -3,13 +3,11 @@ package ua.tqs.project.quickserve.dto;
 import java.util.List;
 import java.util.Map;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+
 import ua.tqs.project.quickserve.entities.Order;
 
-
-@Data
 @Getter
 @Setter
 public class OrderDTO {

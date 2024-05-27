@@ -72,6 +72,8 @@ class OrderRepositoryTest {
         Order found = orderRepository.findById(id).orElse(null);
         
         assertThat(found).isNotNull();
+        assertThat(found.getTotalPrice()).isEqualTo(order.getTotalPrice());
+        assertThat(found.getStatus()).isEqualTo(order.getStatus());
     }
 
     @Test
