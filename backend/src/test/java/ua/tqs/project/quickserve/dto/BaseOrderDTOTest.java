@@ -24,8 +24,9 @@ class BaseOrderDTOTest {
         assertThat(baseOrderDTO.getOrderId()).isEqualTo(1L);
 
         Address address = new Address();
-        BaseOrderDTO baseOrderDTO2 = new BaseOrderDTO(1L, LocalDateTime.now(), address, 1L, 1L, PickupMethod.DELIVERY);
+        BaseOrderDTO baseOrderDTO2 = new BaseOrderDTO(1L, 10.0, LocalDateTime.now(), address, 1L, 1L, PickupMethod.DELIVERY);
 
+        assertThat(baseOrderDTO2.getPrice()).isEqualTo(10.0);
         assertThat(baseOrderDTO2.getScheduledTime()).isNotNull();
         assertThat(baseOrderDTO2.getDeliveryAddress()).isEqualTo(address);
         assertThat(baseOrderDTO2.getRestaurantId()).isEqualTo(1L);

@@ -12,7 +12,9 @@ import org.mockito.quality.Strictness;
 
 import ua.tqs.project.quickserve.entities.Address;
 import ua.tqs.project.quickserve.entities.Category;
+import ua.tqs.project.quickserve.entities.Ingredient;
 import ua.tqs.project.quickserve.entities.Item;
+import ua.tqs.project.quickserve.entities.ItemIngredient;
 import ua.tqs.project.quickserve.entities.OrderItem;
 import ua.tqs.project.quickserve.entities.PickupMethod;
 import ua.tqs.project.quickserve.entities.Menu;
@@ -44,6 +46,9 @@ class OrderItemServiceTest {
     @Mock
     private OrderItemRepository orderItemRepository;
 
+    @Mock
+    private ItemIngredientService itemIngredientService;
+
     @InjectMocks
     private OrderItemService orderItemService;
 
@@ -60,6 +65,11 @@ class OrderItemServiceTest {
         Order order = new Order(LocalDateTime.now(), 5.0, restaurant, client, PickupMethod.AT_RESTAURANT); order.setId(1L);
         restaurant.setTimes("10:00:00", "04:00:00");
 
+        Ingredient ingredient1 = new Ingredient("Burger", 1.0, true, restaurant);
+        Ingredient ingredient2 = new Ingredient("Lettuce", 0.5, true, restaurant);
+
+        ItemIngredient itemIngredient1 = new ItemIngredient(2, true, item, ingredient1); itemIngredient1.setId(1L);
+        ItemIngredient itemIngredient2 = new ItemIngredient(1, true, item, ingredient2); itemIngredient2.setId(2L);
 
         OrderItem orderItem1 = new OrderItem(5.0, item, order); orderItem1.setId(1L);
         OrderItem orderItem2 = new OrderItem(6.0, item, order); orderItem2.setId(2L);
@@ -75,6 +85,9 @@ class OrderItemServiceTest {
         Mockito.when(orderItemRepository.save(orderItem1)).thenReturn(orderItem1);
         
         Mockito.when(orderItemRepository.findByOrderId(1L)).thenReturn(allOrderItems);
+
+        Mockito.when(itemIngredientService.getByItemId(item.getId())).thenReturn(Arrays.asList(itemIngredient1, itemIngredient2));
+        Mockito.when(itemIngredientService.getByOrderItemId(orderItem1.getId())).thenReturn(Arrays.asList(itemIngredient1, itemIngredient2));
     }
     
     @Test
@@ -124,6 +137,12 @@ class OrderItemServiceTest {
             
         orderItemService.deleteOrderItemById(orderItemId);
         Mockito.verify(orderItemRepository, times(1)).deleteById(orderItemId);
+    }
+
+    @Test   
+    void whenGetOrderItemIngredientsByOrderItemthenItemIngredientsShouldBeReturned() {
+        List<ItemIngredient> found = orderItemService.getOrderItemIngredients(1L);
+        assertThat(found).hasSize(2);
     }
 
 }

@@ -118,12 +118,6 @@ class ItemIngredientServiceTest {
         assertThat(savedItemIngredient).isNotNull();
     }
 
-    @Test   
-    void whenGetOrderItemIngredientsByOrderItemthenItemIngredientsShouldBeReturned() {
-        List<ItemIngredient> found = itemIngredientService.getOrderItemIngredients(1L);
-        assertThat(found).hasSize(2);
-    }
-
     @Test
     void whenDeleteItemIngredientthenItemIngredientShouldBeDeleted() {
         Long itemIngredientId = 1L;

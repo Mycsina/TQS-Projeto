@@ -17,6 +17,9 @@ public class BaseOrderDTO {
     @JsonProperty("orderId")
     long orderId;
 
+    @JsonProperty("price")
+    double price;
+
     @JsonProperty("scheduledTime")
     LocalDateTime scheduledTime;
     // Creation time is registered at the time of object instantiation
@@ -38,8 +41,9 @@ public class BaseOrderDTO {
     public BaseOrderDTO() {
     }
 
-    public BaseOrderDTO(long orderId, LocalDateTime scheduledTime, Address deliveryAddress, Long restaurantId, Long userId, PickupMethod pickupMethod) {
+    public BaseOrderDTO(long orderId, double price, LocalDateTime scheduledTime, Address deliveryAddress, Long restaurantId, Long userId, PickupMethod pickupMethod) {
         this.orderId = orderId;
+        this.price = price;
         this.scheduledTime = scheduledTime;
         this.deliveryAddress = deliveryAddress;
         this.restaurantId = restaurantId;
@@ -49,6 +53,7 @@ public class BaseOrderDTO {
 
     public BaseOrderDTO(Order order) {
         this.orderId = order.getId();
+        this.price = order.getTotalPrice();
         this.scheduledTime = order.getScheduledTime();
         this.deliveryAddress = order.getDeliveryAddress();
         this.restaurantId = order.getRestaurant().getId();

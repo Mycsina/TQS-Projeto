@@ -11,21 +11,24 @@ import ua.tqs.project.quickserve.entities.ItemIngredient;
 @Getter
 @Setter
 public class ItemIngredientDTO {
-    ItemDTO itemDTO;
-    IngredientDTO ingredientDTO;
+    long itemIngredientId;
+    boolean isDefault;
     int quantity;
+    IngredientDTO ingredientDTO;
 
     public ItemIngredientDTO() {
     }
 
-    public ItemIngredientDTO(ItemDTO itemDTO, IngredientDTO ingredientDTO, int quantity) {
-        this.itemDTO = itemDTO;
+    public ItemIngredientDTO(long itemIngredientId, boolean isDefault, IngredientDTO ingredientDTO, int quantity) {
+        this.itemIngredientId = itemIngredientId;
+        this.isDefault = isDefault;
         this.ingredientDTO = ingredientDTO;
         this.quantity = quantity;
     }
 
     public ItemIngredientDTO(ItemIngredient itemIngredient) {
-        this.itemDTO = new ItemDTO(itemIngredient.getItem());
+        this.itemIngredientId = itemIngredient.getId();
+        this.isDefault = itemIngredient.isDefault();
         this.ingredientDTO = new IngredientDTO(itemIngredient.getIngredient());
         this.quantity = itemIngredient.getIngredientQuantity();
     }

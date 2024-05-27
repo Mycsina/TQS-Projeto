@@ -2,20 +2,18 @@ package ua.tqs.project.quickserve.services;
 
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Map;
-import java.util.HashMap;
 
 import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
 
+import ua.tqs.project.quickserve.dto.ItemDTO;
 import ua.tqs.project.quickserve.dto.BaseOrderDTO;
 import ua.tqs.project.quickserve.dto.FullOrderDTO;
 import ua.tqs.project.quickserve.entities.ItemIngredient;
 import ua.tqs.project.quickserve.entities.OrderItem;
 import ua.tqs.project.quickserve.entities.Order;
 import ua.tqs.project.quickserve.dto.OrderDTO;
-import ua.tqs.project.quickserve.dto.ItemIngredientDTO;
 import ua.tqs.project.quickserve.entities.Status;
 import ua.tqs.project.quickserve.repositories.OrderRepository;
 
@@ -28,7 +26,6 @@ public class OrderService {
     private final RestaurantService restaurantService;
     private final UserService userService;
     private final OrderItemService orderItemService;
-    private final ItemIngredientService itemIngredientService;
 
     public List<Order> getOrdersByStatus(Status status) {
         return repository.findByStatus(status);
@@ -66,14 +63,14 @@ public class OrderService {
 
     public OrderDTO convertOrderToDTO(Order order) {
         List<OrderItem> orderItems = orderItemService.getOrderItemsByOrderId(order.getId());
-        Map<String, List<ItemIngredientDTO>> ingredients = new HashMap<>();
+        List<ItemDTO> itemDTOs = new ArrayList<>();
+
         for (OrderItem orderItem : orderItems) {
-            List<ItemIngredient> itemIngredients = itemIngredientService.getOrderItemIngredients(orderItem.getId());
-            List<ItemIngredientDTO> itemIngredientsDTO = ItemIngredientDTO.convertToDTOList(itemIngredients);
-            ingredients.put(orderItem.getItem().getName(), itemIngredientsDTO);
+            List<ItemIngredient> itemIngredients = orderItemService.getOrderItemIngredients(orderItem.getId());
+            itemDTOs.add(new ItemDTO(orderItem, itemIngredients));
         }
 
-        return new OrderDTO(order, ingredients);
+        return new OrderDTO(order, itemDTOs);
     }
 
     public List<OrderDTO> convertOrderListToDTOs(List<Order> orders) {
