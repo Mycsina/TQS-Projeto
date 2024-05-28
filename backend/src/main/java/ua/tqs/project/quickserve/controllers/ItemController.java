@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import ua.tqs.project.quickserve.dto.ItemDTO;
-//import org.springframework.web.bind.annotation.*;
 import ua.tqs.project.quickserve.services.ItemService;
 
 import java.util.List;
