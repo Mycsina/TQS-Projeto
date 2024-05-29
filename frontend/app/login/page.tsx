@@ -15,6 +15,7 @@ export default function Component() {
     if (data) {
       console.log(data)
       localStorage.setItem("loggedIn", "true")
+      window.location.href = "/dashboard"
     } else {
       console.error("Failed to login")
     }
