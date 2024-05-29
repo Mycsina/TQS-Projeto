@@ -16,11 +16,19 @@ class BaseItemDTOTest {
     @Test
     void testConstructors() {
         BaseItemDTO itemDTO = new BaseItemDTO();
+        itemDTO.setItemId(1L);
         itemDTO.setName("Item");
+        itemDTO.setDescription("Description");
+        itemDTO.setImage("Image");
+        itemDTO.setPrice(10.0);
         itemDTO.setRestaurantId(1L);
         itemDTO.setCategoryId(1L);
 
+        assertThat(itemDTO.getItemId()).isEqualTo(1L);
         assertThat(itemDTO.getName()).isEqualTo("Item");
+        assertThat(itemDTO.getDescription()).isEqualTo("Description");
+        assertThat(itemDTO.getImage()).isEqualTo("Image");
+        assertThat(itemDTO.getPrice()).isEqualTo(10.0);
         assertThat(itemDTO.getRestaurantId()).isEqualTo(1L);
         assertThat(itemDTO.getCategoryId()).isEqualTo(1L);
 

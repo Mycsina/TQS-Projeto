@@ -18,6 +18,7 @@ import ua.tqs.project.quickserve.entities.Restaurant;
 import ua.tqs.project.quickserve.entities.RoleEnum;
 import ua.tqs.project.quickserve.entities.State;
 import ua.tqs.project.quickserve.entities.User;
+import ua.tqs.project.quickserve.dto.ItemDTO;
 import ua.tqs.project.quickserve.repositories.ItemRepository;
 
 import org.apache.logging.log4j.Logger;
@@ -39,6 +40,9 @@ class ItemServiceTest {
 
     @Mock
     private ItemRepository itemRepository;
+
+    @Mock
+    private ItemIngredientService itemIngredientService;
 
     @InjectMocks
     private ItemService itemService;
@@ -66,6 +70,8 @@ class ItemServiceTest {
 
         Mockito.when(itemRepository.save(item1)).thenReturn(item1);
         Mockito.when(itemRepository.findByCategoryId(category.getId())).thenReturn(Arrays.asList(item1, item2, item3));
+
+        Mockito.when(itemIngredientService.getItemIngredients(item1.getId())).thenReturn(Arrays.asList());
     }
     
     @Test
@@ -113,4 +119,17 @@ class ItemServiceTest {
         Mockito.verify(itemRepository, times(1)).deleteById(itemId);
     }
 
+    @Test
+    void whenConvertItemListToDTOsthenReturnDTOs() {
+        List<Item> allItems = itemRepository.findAll();
+        List<ItemDTO> allItemDTOs = itemService.convertItemListToDTOs(allItems);
+        assertThat(allItemDTOs).hasSize(3);
+    }
+
+    @Test
+    void whenConvertItemToDTOthenReturnDTO() {
+        Item item = itemRepository.findById(1L).get();
+        ItemDTO itemDTO = itemService.convertItemToDTO(item);
+        assertThat(itemDTO).isNotNull();
+    }
 }
