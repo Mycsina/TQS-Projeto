@@ -14,12 +14,13 @@ export default function Component() {
     const data = await login(email, password)
     if (data) {
       console.log(data)
+      localStorage.setItem("loggedIn", "true")
     } else {
       console.error("Failed to login")
     }
   }
   return (
-    <main className="flex h-screen w-full items-center justify-center bg-gray-950 dark:bg-gray-950">
+    <main className="flex w-full items-center justify-center">
       <div className="w-full max-w-md space-y-6 rounded-lg bg-gray-900 p-6 shadow-lg dark:bg-gray-900">
         <div className="space-y-2 text-center">
           <h1 className="text-3xl font-bold text-gray-50">Welcome back</h1>

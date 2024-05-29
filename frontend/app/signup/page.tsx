@@ -26,7 +26,7 @@ export default function Signup() {
   };
 
   return (
-    <main className="flex h-screen w-full items-center justify-center bg-gray-950 p-4">
+    <main className="flex w-full items-center justify-center p-4">
       <div className="w-full max-w-md space-y-6">
         <div className="space-y-2 text-center">
           <h1 className="text-3xl font-bold text-gray-50">Sign Up</h1>
