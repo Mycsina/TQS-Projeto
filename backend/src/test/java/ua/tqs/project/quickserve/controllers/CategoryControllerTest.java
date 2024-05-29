@@ -42,7 +42,7 @@ class CategoryControllerTest {
         RestAssuredMockMvc
             .given()
             .when()
-                .get("/api/v1/items/1")
+                .get("/api/v1/categories/1")
             .then()
                 .statusCode(200);
     }
@@ -64,7 +64,7 @@ class CategoryControllerTest {
         RestAssuredMockMvc
             .given()
             .when()
-                .get("/api/v1/items/restaurant/1")
+                .get("/api/v1/categories/menu/1")
             .then()
                 .statusCode(200)
                 .body("$", hasSize(2));
