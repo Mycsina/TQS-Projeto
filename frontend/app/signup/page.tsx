@@ -20,7 +20,7 @@ export default function Signup() {
     const result = await signUp(name, email, password, phone);
     if (result) {
       console.log(result);
-      localStorage.setItem("loggedIn", "true");
+      localStorage.setItem("loggedIn", email);
       window.location.href = "/dashboard";
     } else {
       console.log(result)

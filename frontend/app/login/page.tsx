@@ -14,7 +14,7 @@ export default function Component() {
     const data = await login(email, password)
     if (data) {
       console.log(data)
-      localStorage.setItem("loggedIn", "true")
+      localStorage.setItem("loggedIn", email)
       window.location.href = "/dashboard"
     } else {
       console.error("Failed to login")
