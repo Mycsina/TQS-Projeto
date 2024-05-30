@@ -1,5 +1,7 @@
 package ua.tqs.project.quickserve.services;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import ua.tqs.project.quickserve.entities.Category;
@@ -13,6 +15,10 @@ public class CategoryService {
 
     public Category save(Category category) {
         return repository.save(category);
+    }
+
+    public List<Category> getCategoriesByMenu(long menuId) {
+        return repository.findByMenuId(menuId);
     }
 
     public Category getCategoryById(long id) {

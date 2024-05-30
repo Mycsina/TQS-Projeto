@@ -45,8 +45,8 @@ class RestaurantRepositoryTest {
         this.restaurantAddress2 = new Address("Rua do Burger", "Porto", "4200-055", "Portugal");
         this.menu1 = new Menu();
         this.menu2 = new Menu();
-        this.manager1 = new User("McDonald's Manager", "1234", RoleEnum.MANAGER, "mcdonalds.mc.pt", 123123123);
-        this.manager2 = new User("Burger King Manager", "1234", RoleEnum.MANAGER, "burgerking.mc.pt", 123123123);
+        this.manager1 = new User("McDonald's Manager", "1234", RoleEnum.MANAGER, "mcdonalds.mc.pt", 123123125);
+        this.manager2 = new User("Burger King Manager", "1234", RoleEnum.MANAGER, "burgerking.mc.pt", 123123127);
 
         entityManager.persistAndFlush(restaurantAddress1);
         entityManager.persistAndFlush(restaurantAddress2);
@@ -72,7 +72,7 @@ class RestaurantRepositoryTest {
 
     @Test
     void whenFindAllRestaurantsthenReturnRestaurantes() {
-        Restaurant restaurant1 = new Restaurant("McDonald's", "Number 1 in the fast food industry!", 123123123, State.OPEN, restaurantAddress1, menu1, manager1);
+        Restaurant restaurant1 = new Restaurant("McDonald's", "Number 1 in the fast food industry!", 12312312, State.OPEN, restaurantAddress1, menu1, manager1);
         restaurant1.setTimes("10:00:00", "04:00:00");
         Restaurant restaurant2 = new Restaurant("Burger King", "Number 2 in the fast food industry!", 123123123, State.OPEN, restaurantAddress2, menu2, manager2);
         restaurant2.setTimes("10:00:00", "04:00:00");

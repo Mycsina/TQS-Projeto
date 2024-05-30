@@ -25,10 +25,10 @@ public class User {
     @Enumerated(EnumType.STRING)
     private RoleEnum role;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String email;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private int phone;
 
     @ManyToOne

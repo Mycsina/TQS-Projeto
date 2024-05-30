@@ -1,4 +1,4 @@
-import { ItemIngredients } from "./ItemTypes"
+import { Item } from "./ItemTypes"
 import { Address } from "./UserTypes"
 
 export enum pickupMethod {
@@ -9,11 +9,12 @@ export enum pickupMethod {
 
 export type Order = {
     order: BaseOrder,
-    itemIngredients: Map<string, ItemIngredients[]>
+    items: Item[]
 }
 
 export type BaseOrder = {
     orderId: number,
+    price: number,
     scheduledTime: string,
     deliveryAddress: Address,
     restaurantId: number,

@@ -1,13 +1,11 @@
 package ua.tqs.project.quickserve.services;
 
 import java.util.List;
-import java.util.ArrayList;
 
 import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
 
-import ua.tqs.project.quickserve.entities.OrderItem;
 import ua.tqs.project.quickserve.entities.ItemIngredient;
 import ua.tqs.project.quickserve.repositories.ItemIngredientRepository;
 
@@ -17,24 +15,16 @@ public class ItemIngredientService {
 
     private ItemIngredientRepository repository;
 
-    private OrderItemService orderItemService;
+    public List<ItemIngredient> getItemIngredients(long itemId) {
+        return repository.findByItemId(itemId);
+    }
 
-    public List<ItemIngredient> getOrderItemIngredients(long orderItemId) {
-        OrderItem orderItem = orderItemService.getOrderItemById(orderItemId);
-        List<ItemIngredient> defaultIngredients = new ArrayList<>(repository.findByItemId(orderItem.getItem().getId()));
-        List<ItemIngredient> modifiedIngredients = repository.findByOrderItemId(orderItemId);
+    public List<ItemIngredient> getByOrderItemId(long orderItemId) {
+        return repository.findByOrderItemId(orderItemId);
+    }
 
-        for (ItemIngredient modifiedIngredient : modifiedIngredients) {
-            for (ItemIngredient defaultIngredient : defaultIngredients) {
-                if (modifiedIngredient.getIngredient().getId() == defaultIngredient.getIngredient().getId()) {
-                    defaultIngredients.remove(defaultIngredient);
-                    defaultIngredients.add(modifiedIngredient);
-                    break;
-                }
-            }
-        }
-
-        return defaultIngredients;
+    public List<ItemIngredient> getByItemId(long itemId) {
+        return repository.findByItemId(itemId);
     }
 
     public ItemIngredient save(ItemIngredient itemIngredient) {

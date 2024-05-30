@@ -1,8 +1,6 @@
 package ua.tqs.project.quickserve.dto;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -46,12 +44,17 @@ class OrderDTOTest {
 
         order.setPickupMethod(PickupMethod.DELIVERY);
 
-        Map<String, List<ItemIngredientDTO>> itemIngredients = new HashMap<String, List<ItemIngredientDTO>>();
-        itemIngredients.put("item1", List.of(new ItemIngredientDTO()));
+        BaseItemDTO baseItemDTO = new BaseItemDTO();
+        baseItemDTO.setItemId(1L);
 
-        OrderDTO orderDTO2 = new OrderDTO(order, itemIngredients);
+        ItemDTO itemDTO = new ItemDTO();
+        itemDTO.setItem(baseItemDTO);
+
+        List<ItemDTO> items = List.of(itemDTO);
+
+        OrderDTO orderDTO2 = new OrderDTO(order, items);
 
         assertThat(orderDTO2.getOrder().getOrderId()).isEqualTo(2L);
-        assertThat(itemIngredients).containsKey("item1");
+        assertThat(orderDTO2.getItems()).containsExactly(itemDTO);
     }
 }
