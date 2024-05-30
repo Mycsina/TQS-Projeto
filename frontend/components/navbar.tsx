@@ -5,7 +5,8 @@ export default function Navbar() {
       <h1 className="text-white font-semibold text-xl"><a href="/">QuickServe</a></h1>
       <div className="flex-grow"></div>
       <div className="flex items-center">
-        <a href="login" className="text-white hover:text-gray-200">Login</a>
+        <a href="cart" className="text-white hover:text-gray-200">Cart</a>
+        <a href="login" className="text-white hover:text-gray-200 ml-5">Login</a>
         <a href="signup" className="text-white hover:text-gray-200 ml-5">Sign up</a>
       </div>
     </nav>
