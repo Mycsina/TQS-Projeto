@@ -53,7 +53,7 @@ class UserRepositoryTest {
     @Test
     void whenFindAllUsersthenReturnUseres() {
         User user1 = new User("John Doe", "1234", RoleEnum.CLIENT, "john.doe.pt", 123123123, address);
-        User user2 = new User("McDonald's Manager", "1234", RoleEnum.MANAGER, "mcdonalds.mc.pt", 123123123);
+        User user2 = new User("McDonald's Manager", "1234", RoleEnum.MANAGER, "mcdonalds.mc.pt", 123123126);
         entityManager.persist(user1);
         entityManager.persist(user2);
         entityManager.flush();

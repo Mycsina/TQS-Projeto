@@ -37,7 +37,7 @@ public class DataInitializer implements CommandLineRunner {
         r1.setTimes(LocalTime.of(10, 0, 0), LocalTime.of(4, 0, 0));
 
         // Restaurant 2
-        User u3 = new User("Burger Kings's Manager", "1234", RoleEnum.MANAGER, "mcdonalds.mc.pt", 123123123);
+        User u3 = new User("Burger Kings's Manager", "1234", RoleEnum.MANAGER, "bk.pt", 123123127);
         Address a3 = new Address("Rua do Abc", "Aveiro", "4220-035", country);
         Menu m2 = new Menu();
         Restaurant r2 = new Restaurant("Burger King", "Number 2 in the fast food industry!", 123123123, State.OPEN, a3, m2, u3);
@@ -77,7 +77,7 @@ public class DataInitializer implements CommandLineRunner {
 
         // Users
         Address a2 = new Address("Casa do Joao", "Viseu", "4250-055", country);
-        User u1 = new User("Joao", "1234", RoleEnum.CLIENT, "joao@joao.pt", 123123123, a2);
+        User u1 = new User("Joao", "1234", RoleEnum.CLIENT, "joao@joao.pt", 123123129, a2);
 
         // Order
         Order o1 = new Order(LocalDateTime.now(), 5.0, a2, r1, u1, PickupMethod.DELIVERY, Status.IN_MAKING);

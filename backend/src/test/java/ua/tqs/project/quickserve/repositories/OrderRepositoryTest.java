@@ -49,8 +49,8 @@ class OrderRepositoryTest {
         this.deliveryAddress = new Address("Rua do Amial", "Porto", "4200-055", "Portugal");
         this.menu = new Menu();
         this.client = new User("John Doe", "1234", RoleEnum.CLIENT, "john.doe.pt", 123123123, deliveryAddress);
-        this.manager = new User("McDonald's Manager", "1234", RoleEnum.MANAGER, "mcdonalds.mc.pt", 123123123);
-        this.restaurant = new Restaurant("McDonald's", "Number 1 in the fast food industry!", 123123123, State.OPEN, restaurantAddress, menu, manager);
+        this.manager = new User("McDonald's Manager", "1234", RoleEnum.MANAGER, "mcdonalds.mc.pt", 123123125);
+        this.restaurant = new Restaurant("McDonald's", "Number 1 in the fast food industry!", 123123127, State.OPEN, restaurantAddress, menu, manager);
         restaurant.setTimes("10:00:00", "04:00:00");
 
         entityManager.persistAndFlush(restaurantAddress);
