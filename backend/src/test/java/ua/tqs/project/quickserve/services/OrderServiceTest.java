@@ -17,7 +17,6 @@ import ua.tqs.project.quickserve.dto.FullOrderDTO;
 import ua.tqs.project.quickserve.dto.OrderDTO;
 import ua.tqs.project.quickserve.entities.PickupMethod;
 import ua.tqs.project.quickserve.entities.Menu;
-import ua.tqs.project.quickserve.entities.Order;
 import ua.tqs.project.quickserve.entities.Restaurant;
 import ua.tqs.project.quickserve.entities.RoleEnum;
 import ua.tqs.project.quickserve.entities.State;

@@ -1,5 +1,7 @@
 package ua.tqs.project.quickserve.dto;
 
+import java.util.List;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -13,25 +15,17 @@ import ua.tqs.project.quickserve.entities.Address;
 import ua.tqs.project.quickserve.entities.Order;
 import ua.tqs.project.quickserve.entities.PickupMethod;
 
-class BaseOrderDTOTest {
+class OrderDTOTest {
 
-    @DisplayName("Test BaseOrderDTO Constructors")
+    @DisplayName("Test OrderDTO Constructors")
     @Test
     void testConstructors() {
+        OrderDTO orderDTO = new OrderDTO();
         BaseOrderDTO baseOrderDTO = new BaseOrderDTO();
         baseOrderDTO.setOrderId(1L);
+        orderDTO.setOrder(baseOrderDTO);
 
-        assertThat(baseOrderDTO.getOrderId()).isEqualTo(1L);
-
-        Address address = new Address();
-        BaseOrderDTO baseOrderDTO2 = new BaseOrderDTO(1L, 10.0, LocalDateTime.now(), address, 1L, 1L, PickupMethod.DELIVERY);
-
-        assertThat(baseOrderDTO2.getPrice()).isEqualTo(10.0);
-        assertThat(baseOrderDTO2.getScheduledTime()).isNotNull();
-        assertThat(baseOrderDTO2.getDeliveryAddress()).isEqualTo(address);
-        assertThat(baseOrderDTO2.getRestaurantId()).isEqualTo(1L);
-        assertThat(baseOrderDTO2.getUserId()).isEqualTo(1L);
-
+        assertThat(orderDTO.getOrder().getOrderId()).isEqualTo(1L);
 
         Order order = new Order();
         order.setId(2L);
@@ -50,11 +44,17 @@ class BaseOrderDTOTest {
 
         order.setPickupMethod(PickupMethod.DELIVERY);
 
-        BaseOrderDTO baseOrderDTO3 = new BaseOrderDTO(order);
+        BaseItemDTO baseItemDTO = new BaseItemDTO();
+        baseItemDTO.setItemId(1L);
 
-        assertThat(baseOrderDTO3.getOrderId()).isEqualTo(2L);
-        assertThat(baseOrderDTO3.getRestaurantId()).isEqualTo(1L);
-        assertThat(baseOrderDTO3.getUserId()).isEqualTo(1L);
+        ItemDTO itemDTO = new ItemDTO();
+        itemDTO.setItem(baseItemDTO);
+
+        List<ItemDTO> items = List.of(itemDTO);
+
+        OrderDTO orderDTO2 = new OrderDTO(order, items);
+
+        assertThat(orderDTO2.getOrder().getOrderId()).isEqualTo(2L);
+        assertThat(orderDTO2.getItems()).containsExactly(itemDTO);
     }
-
 }

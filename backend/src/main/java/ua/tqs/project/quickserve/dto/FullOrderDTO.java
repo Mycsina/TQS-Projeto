@@ -1,9 +1,9 @@
 package ua.tqs.project.quickserve.dto;
 
-import lombok.Data;
+import lombok.Getter;
 import lombok.Setter;
 
-@Data
+@Getter
 @Setter
 public class FullOrderDTO {
     // FullOrderSubmitDTO needs to consist of:
@@ -13,4 +13,8 @@ public class FullOrderDTO {
     BaseOrderDTO order;
     long[] items;
     ItemIngredientDTO[] itemIngredients;
+
+    public FullOrderDTO() {
+        // Empty constructor
+    }
 }

@@ -3,15 +3,7 @@ import { ItemIngredients } from "@/types/ItemTypes";
 import { Order } from "@/types/OrderTypes";
 
 export default function OrderCard(props: { order: Order }) {
-    const map = new Map(Object.entries(props.order.itemIngredients));
-    let ingredients = new Array(map.size);
-
-    let i = 0;
-    while (i < map.size) {
-        ingredients.push(map.entries().next());
-        i++;
-    }
-
+    const items = props.order.items;
     return (
         <div className="bg-zinc-100 dark:bg-gray-950 flex flex-col p-5 rounded shadow-lg w-[500px] min-h-52">
             <div className="flex justify-between">
@@ -21,17 +13,17 @@ export default function OrderCard(props: { order: Order }) {
             <Separator />
             <div className="my-5">
                 {
-                    ingredients.map((ingredient, index) => {
-                        const list = map.get(ingredient.value[0]) as ItemIngredients[];
+                    items.map((item, index) => {
+                        const itemIngredients = item.itemIngredients;
                         return (
                             <div key={index}>
-                                <h2 className="text-xl font-bold mb-2">{ingredient.value[0]}</h2>
+                                <h2 className="text-xl font-bold mb-2">{item.item.name}</h2>
                                 {
-                                    list.map((ing, idx) => {
+                                    itemIngredients.map((itemIngredient, idx) => {
                                         return (
                                             <div key={idx} className="flex items-center justify-between ps-2">
-                                                <p className="font-semibold">{ing.ingredientDTO.name}</p>
-                                                <p>{ing.quantity}</p>
+                                                <p className="font-semibold">{itemIngredient.ingredientDTO.name}</p>
+                                                <p>{itemIngredient.quantity}</p>
                                             </div>
                                         )
                                     })

@@ -5,42 +5,52 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.ArrayList;
+
+import ua.tqs.project.quickserve.entities.Item;
 import ua.tqs.project.quickserve.entities.Restaurant;
 import ua.tqs.project.quickserve.entities.Category;
-import ua.tqs.project.quickserve.entities.Item;
+import ua.tqs.project.quickserve.entities.ItemIngredient;
+import ua.tqs.project.quickserve.entities.OrderItem;
 
 class ItemDTOTest {
 
     @DisplayName("Test ItemDTO Constructors")
     @Test
     void testConstructors() {
+        BaseItemDTO baseItemDTO = new BaseItemDTO();
+        baseItemDTO.setName("Item");
+
         ItemDTO itemDTO = new ItemDTO();
-        itemDTO.setName("Item");
+        itemDTO.setItem(baseItemDTO);
 
-        assertThat(itemDTO.getName()).isEqualTo("Item");
+        assertThat(itemDTO.getItem()).isNotNull();
+        assertThat(itemDTO.getItem().getName()).isEqualTo("Item");
 
-        ItemDTO itemDTO2 = new ItemDTO("Item2", 1L, 1L);
-
-        assertThat(itemDTO2.getName()).isEqualTo("Item2");
-        assertThat(itemDTO2.getRestaurantId()).isEqualTo(1L);
-        assertThat(itemDTO2.getCategoryId()).isEqualTo(1L);
-
+        Item item = new Item();
+        item.setPrice(10.0);
+        item.setDescription("Description");
+        item.setImage("Image");
+        
         Restaurant restaurant = new Restaurant();
         restaurant.setId(1L);
+
+        item.setRestaurant(restaurant);
 
         Category category = new Category();
         category.setId(1L);
 
-        Item item = new Item();
-        item.setName("Item3");
-        item.setRestaurant(restaurant);
         item.setCategory(category);
 
-        ItemDTO itemDTO3 = new ItemDTO(item);
+        ItemDTO itemDTO2 = new ItemDTO(item, new ArrayList<ItemIngredient>());
 
-        assertThat(itemDTO3.getName()).isEqualTo("Item3");
-        assertThat(itemDTO3.getRestaurantId()).isEqualTo(1L);
-        assertThat(itemDTO3.getCategoryId()).isEqualTo(1L);
+        assertThat(itemDTO2.getItem().getPrice()).isEqualTo(10.0);
+
+        OrderItem orderItem = new OrderItem();
+        orderItem.setItem(item);
+
+        ItemDTO itemDTO3 = new ItemDTO(orderItem, new ArrayList<ItemIngredient>());
+
+        assertThat(itemDTO3.getItem().getPrice()).isEqualTo(10.0);
     }
-
 }

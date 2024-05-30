@@ -18,6 +18,7 @@ export default function Navbar() {
       {logged ? (
         <div className="flex items-center">
           <a href="dashboard" className="text-white hover:text-gray-200">Dashboard</a>
+          <a href="cart" className="text-white hover:text-gray-200">Cart</a>
           <a href="logout" className="text-white hover:text-gray-200 ml-5">Logout</a>
         </div>
       ) : (
