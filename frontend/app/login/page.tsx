@@ -1,22 +1,33 @@
-/**
- * v0 by Vercel.
- * @see https://v0.dev/t/dBcTrhBkAbm
- * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
- */
+'use client';
+
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
+import { login } from "@/server/Login"
 
 export default function Component() {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    const email = (e.currentTarget.elements.namedItem("email") as HTMLInputElement).value
+    const password = (e.currentTarget.elements.namedItem("password") as HTMLInputElement).value
+    const data = await login(email, password)
+    if (data) {
+      console.log(data)
+      localStorage.setItem("loggedIn", "true")
+      window.location.href = "/dashboard"
+    } else {
+      console.error("Failed to login")
+    }
+  }
   return (
-    <main className="flex h-screen w-full items-center justify-center bg-gray-950 dark:bg-gray-950">
+    <main className="flex w-full items-center justify-center">
       <div className="w-full max-w-md space-y-6 rounded-lg bg-gray-900 p-6 shadow-lg dark:bg-gray-900">
         <div className="space-y-2 text-center">
           <h1 className="text-3xl font-bold text-gray-50">Welcome back</h1>
           <p className="text-gray-400 dark:text-gray-400">Enter your email and password to sign in.</p>
         </div>
-        <form className="space-y-4">
+        <form className="space-y-4" onSubmit={handleSubmit}>
           <div className="space-y-2">
             <Label className="text-gray-50" htmlFor="email">
               Email

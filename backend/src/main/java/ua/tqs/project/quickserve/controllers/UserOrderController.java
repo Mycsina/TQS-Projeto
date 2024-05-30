@@ -2,6 +2,7 @@ package ua.tqs.project.quickserve.controllers;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,7 @@ import ua.tqs.project.quickserve.services.UserService;
 import java.util.List;
 import java.util.Optional;
 
+@Log4j2
 @RestController
 @RequestMapping("/api/${app.api.version}/user/orders")
 @Tag(name = "User Order", description = "Operations on Orders made by users")
