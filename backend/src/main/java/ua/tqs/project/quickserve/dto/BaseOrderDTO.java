@@ -41,6 +41,14 @@ public class BaseOrderDTO {
     public BaseOrderDTO() {
     }
 
+    public BaseOrderDTO(LocalDateTime scheduledTime, Address deliveryAddress, Long restaurantId, Long userId, PickupMethod pickupMethod) {
+        this.scheduledTime = scheduledTime;
+        this.deliveryAddress = deliveryAddress;
+        this.restaurantId = restaurantId;
+        this.userId = userId;
+        this.pickupMethod = pickupMethod;
+    }
+
     public BaseOrderDTO(long orderId, double price, LocalDateTime scheduledTime, Address deliveryAddress, Long restaurantId, Long userId, PickupMethod pickupMethod) {
         this.orderId = orderId;
         this.price = price;

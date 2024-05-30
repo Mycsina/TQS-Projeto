@@ -26,7 +26,7 @@ public class Order {
     @Column(nullable = false, columnDefinition = "TIMESTAMP")
     private LocalDateTime createdAtTime = LocalDateTime.now();
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private double totalPrice;
 
     @OneToOne
