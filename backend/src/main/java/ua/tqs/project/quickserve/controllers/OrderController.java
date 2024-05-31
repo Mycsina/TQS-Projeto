@@ -58,4 +58,24 @@ public class OrderController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
+    @Operation(summary = "Get orders by restaurant")
+    @GetMapping("/restaurant/{restaurantId}")
+    public ResponseEntity<List<OrderDTO>> getOrdersByRestaurant(@PathVariable long restaurantId) {
+      return ResponseEntity.ok(service.convertOrderListToDTOs(service.getOrdersByRestaurantId(restaurantId)));
+    }
+
+    @Operation(summary = "Update order status")
+    @PutMapping("/{restaurantId}/{orderId}/{status}")
+    public ResponseEntity<Order> updateOrderStatus(@PathVariable long restaurantId, @PathVariable long orderId, @PathVariable Status status) {
+        Order order = service.getOrderById(orderId);
+        if (order == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        if (order.getRestaurant().getId() != restaurantId) {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
+        service.updateOrderStatus(orderId, status);
+        return ResponseEntity.ok(order);
+    }
+
 }

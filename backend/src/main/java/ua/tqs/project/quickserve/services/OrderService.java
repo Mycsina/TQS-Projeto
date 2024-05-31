@@ -53,12 +53,22 @@ public class OrderService {
         return Optional.empty();
     }
 
+    public List<Order> getOrdersByRestaurantId(long restaurantId) {
+        return repository.findByRestaurantId(restaurantId);
+    }
+
     public Order save(Order order) {
         return repository.save(order);
     }
 
     public Order getOrderById(long id) {
         return repository.findById(id).orElse(null);
+    }
+
+    public Order updateOrderStatus(long orderId, Status status) {
+        Order order = getOrderById(orderId);
+        order.setStatus(status);
+        return save(order);
     }
 
     public OrderDTO convertOrderToDTO(Order order) {
