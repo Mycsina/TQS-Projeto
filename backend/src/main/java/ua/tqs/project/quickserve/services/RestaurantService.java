@@ -5,6 +5,7 @@ import java.util.List;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import ua.tqs.project.quickserve.entities.Restaurant;
+import ua.tqs.project.quickserve.dto.MenuDTO;
 import ua.tqs.project.quickserve.dto.RestaurantDTO;
 import ua.tqs.project.quickserve.repositories.RestaurantRepository;
 
@@ -13,6 +14,8 @@ import ua.tqs.project.quickserve.repositories.RestaurantRepository;
 public class RestaurantService {
 
     private RestaurantRepository repository;
+
+    private MenuService menuService;
 
     public Restaurant save(Restaurant restaurant) {
         return repository.save(restaurant);
@@ -32,6 +35,11 @@ public class RestaurantService {
 
     public Restaurant getRestaurantById(long id) {
         return repository.findById(id).orElse(null);
+    }
+
+    public void setMenu(MenuDTO menu) {
+        Restaurant restaurant = getRestaurantById(menu.getRestaurantId());
+        menuService.defineMenu(menu, restaurant);
     }
 
     public void deleteRestaurantById(long id) {

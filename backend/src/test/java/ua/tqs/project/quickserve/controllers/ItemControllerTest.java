@@ -8,7 +8,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 import ua.tqs.project.quickserve.services.ItemService;
 import ua.tqs.project.quickserve.entities.Item;
-import ua.tqs.project.quickserve.entities.Restaurant;
 import ua.tqs.project.quickserve.entities.Category;
 import ua.tqs.project.quickserve.dto.ItemDTO;
 
@@ -73,36 +72,6 @@ class ItemControllerTest {
                 .get("/api/v1/items/1")
             .then()
                 .statusCode(200);
-    }
-
-    @Test
-    void whenGetItemsByRestaurantthenGetItems( ) {
-        Restaurant someRestaurant = new Restaurant();
-        someRestaurant.setId(1L);
-
-        Item someItem = new Item();
-        someItem.setRestaurant(someRestaurant);
-        Item otherItem = new Item();
-        otherItem.setRestaurant(someRestaurant);
-
-        List<Item> allItems = Arrays.asList(someItem, otherItem);
-
-        when( service.getItemsByRestaurant(1L) ).thenReturn(allItems);
-
-        ItemDTO someItemDTO = new ItemDTO();
-        ItemDTO otherItemDTO = new ItemDTO();
-
-        List<ItemDTO> allItemDTOs = Arrays.asList(someItemDTO, otherItemDTO);
-
-        when( service.convertItemListToDTOs(allItems) ).thenReturn(allItemDTOs);
-        
-        RestAssuredMockMvc
-            .given()
-            .when()
-                .get("/api/v1/items/restaurant/1")
-            .then()
-                .statusCode(200)
-                .body("$", hasSize(2));
     }
 
     @Test

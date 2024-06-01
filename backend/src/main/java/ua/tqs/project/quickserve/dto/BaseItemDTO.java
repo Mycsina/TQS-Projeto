@@ -30,6 +30,13 @@ public class BaseItemDTO {
         this.categoryId = categoryId;
     }
 
+    public BaseItemDTO(String name, String description, String image, double price) {
+        this.name = name;
+        this.description = description;
+        this.image = image;
+        this.price = price;
+    }
+
     public BaseItemDTO(Item item) {
         this.itemId = item.getId();
         this.name = item.getName();
