@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import ua.tqs.project.quickserve.services.MenuService;
-import ua.tqs.project.quickserve.entities.Menu;
+import ua.tqs.project.quickserve.dto.MenuDTO;
 
 @RestController
 @AllArgsConstructor
@@ -23,13 +23,13 @@ public class MenuController {
 
     @Operation(summary = "Get menu by id")
     @GetMapping("/{id}")
-    public ResponseEntity<Menu> getMenuById(@PathVariable long id) {
-        return new ResponseEntity<>(service.getMenuById(id), HttpStatus.OK);
+    public ResponseEntity<MenuDTO> getMenuById(@PathVariable long id) {
+        return new ResponseEntity<>(service.convertMenuToDTO(service.getMenuById(id)), HttpStatus.OK);
     }
 
     @Operation(summary = "Get restaurant menu")
     @GetMapping("/restaurant/{restaurantId}")
-    public ResponseEntity<Menu> getRestaurantMenu(@PathVariable long restaurantId) {
-        return new ResponseEntity<>(service.getRestaurantMenu(restaurantId), HttpStatus.OK);
+    public ResponseEntity<MenuDTO> getRestaurantMenu(@PathVariable long restaurantId) {
+        return new ResponseEntity<>(service.convertMenuToDTO(service.getRestaurantMenu(restaurantId)), HttpStatus.OK);
     }
 }

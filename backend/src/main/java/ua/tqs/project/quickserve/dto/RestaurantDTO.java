@@ -19,7 +19,6 @@ public class RestaurantDTO {
     LocalTime closingTime;
     String state;
     Address address;
-    long menuId;
     long managerId;
 
     public RestaurantDTO() {
@@ -34,7 +33,6 @@ public class RestaurantDTO {
         this.closingTime = restaurant.getClosingTime();
         this.state = restaurant.getState().toString();
         this.address = restaurant.getAddress();
-        this.menuId = restaurant.getMenu().getId();
         this.managerId = restaurant.getManager().getId();
     }
 

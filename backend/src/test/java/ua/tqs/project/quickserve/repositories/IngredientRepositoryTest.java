@@ -41,15 +41,15 @@ class IngredientRepositoryTest {
     @BeforeEach
     void setUp() {
         this.address = new Address("Rua do Amial", "Porto", "4200-055", "Portugal");
-        this.menu = new Menu();
         this.manager = new User("McDonald's Manager", "1234", RoleEnum.MANAGER, "mcdonalds.mc.pt", 123123123);
-        this.restaurant = new Restaurant("McDonald's", "Number 1 in the fast food industry!", 123123123, State.OPEN, address, menu, manager);
+        this.restaurant = new Restaurant("McDonald's", "Number 1 in the fast food industry!", 123123123, State.OPEN, address, manager);
         restaurant.setTimes("10:00:00", "04:00:00");
+        this.menu = new Menu(restaurant);
 
         entityManager.persistAndFlush(address);
-        entityManager.persistAndFlush(menu);
         entityManager.persistAndFlush(manager);
         entityManager.persistAndFlush(restaurant);
+        entityManager.persistAndFlush(menu);
     }
 
     @Test

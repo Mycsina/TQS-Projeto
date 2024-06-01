@@ -27,7 +27,6 @@ class RestaurantDTOTest {
         restaurantDTO.setClosingTime(LocalTime.of(22, 0));
         restaurantDTO.setState("OPEN");
         restaurantDTO.setAddress(new Address());
-        restaurantDTO.setMenuId(1L);
         restaurantDTO.setManagerId(1L);
 
         assertThat(restaurantDTO.getName()).isEqualTo("Restaurant");
@@ -38,7 +37,6 @@ class RestaurantDTOTest {
         assertThat(restaurantDTO.getClosingTime()).isEqualTo(LocalTime.of(22, 0));
         assertThat(restaurantDTO.getState()).isEqualTo("OPEN");
         assertThat(restaurantDTO.getAddress()).isNotNull();
-        assertThat(restaurantDTO.getMenuId()).isEqualTo(1L);
         assertThat(restaurantDTO.getManagerId()).isEqualTo(1L);
 
         Address address = new Address();
@@ -58,7 +56,6 @@ class RestaurantDTOTest {
         restaurant.setClosingTime(LocalTime.of(23, 0));
         restaurant.setState(State.CLOSED);
         restaurant.setAddress(address);
-        restaurant.setMenu(menu);
         restaurant.setManager(manager);
 
         RestaurantDTO restaurantDTO2 = new RestaurantDTO(restaurant);

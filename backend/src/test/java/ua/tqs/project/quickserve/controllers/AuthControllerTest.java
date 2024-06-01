@@ -16,7 +16,7 @@ import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
 @WebMvcTest(AuthController.class)
-public class AuthControllerTest {
+class AuthControllerTest {
 
     @MockBean UserService userService;
 

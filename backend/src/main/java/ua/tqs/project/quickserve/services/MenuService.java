@@ -36,6 +36,10 @@ public class MenuService {
         }
     }
 
+    public MenuDTO convertMenuToDTO(Menu menu) {
+        return new MenuDTO(menu.getRestaurant().getId(), categoryService.convertCategoryListToDTOs(categoryService.getCategoriesByMenu(menu.getId())));
+    }
+
     public void deleteMenuById(long id) {
         repository.deleteById(id);
     }

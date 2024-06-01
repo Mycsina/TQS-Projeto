@@ -46,7 +46,14 @@ public class CategoryService {
             itemService.defineItem(item, newCategory);
         }
     }
-        
+    
+    public List<CategoryDTO> convertCategoryListToDTOs(List<Category> categories) {
+        List<CategoryDTO> categoryDTOs = new java.util.ArrayList<>();
+        for (Category category : categories) {
+            categoryDTOs.add(new CategoryDTO(category.getName(), itemService.convertItemListToDTOs(itemService.getItemsByCategory(category.getId()))));
+        }
+        return categoryDTOs;
+    }
 
     public void deleteCategoryById(long id) {
         repository.deleteById(id);

@@ -16,7 +16,6 @@ import ua.tqs.project.quickserve.entities.Order;
 import ua.tqs.project.quickserve.dto.FullOrderDTO;
 import ua.tqs.project.quickserve.dto.OrderDTO;
 import ua.tqs.project.quickserve.entities.PickupMethod;
-import ua.tqs.project.quickserve.entities.Menu;
 import ua.tqs.project.quickserve.entities.Restaurant;
 import ua.tqs.project.quickserve.entities.RoleEnum;
 import ua.tqs.project.quickserve.entities.State;
@@ -63,10 +62,9 @@ class OrderServiceTest {
     public void setUp() {
         Address restaurantAddress = new Address("Rua do Amial", "Porto", "4200-055", "Portugal");
         Address deliveryAddress = new Address("Rua do Amial", "Porto", "4200-055", "Portugal");
-        Menu menu = new Menu();
         User client = new User("John Doe", "1234", RoleEnum.CLIENT, "john.doe.pt", 123123123, deliveryAddress);
         User manager = new User("McDonald's Manager", "1234", RoleEnum.MANAGER, "mcdonalds.mc.pt", 123123123);
-        Restaurant restaurant = new Restaurant("McDonald's", "Number 1 in the fast food industry!", 123123123, State.OPEN, restaurantAddress, menu, manager);
+        Restaurant restaurant = new Restaurant("McDonald's", "Number 1 in the fast food industry!", 123123123, State.OPEN, restaurantAddress, manager);
         restaurant.setTimes("10:00:00", "04:00:00");
 
         Order order1 = new Order(LocalDateTime.now(), 5.0, deliveryAddress, restaurant, client, PickupMethod.DELIVERY); order1.setId(1L);
@@ -125,10 +123,9 @@ class OrderServiceTest {
     void whenSaveOrderthenOrderShouldBeReturned() {
         Address restaurantAddress = new Address("Rua do Amial", "Porto", "4200-055", "Portugal");
         Address deliveryAddress = new Address("Rua do Amial", "Porto", "4200-055", "Portugal");
-        Menu menu = new Menu();
         User client = new User("John Doe", "1234", RoleEnum.CLIENT, "john.doe.pt", 123123123, deliveryAddress);
         User manager = new User("McDonald's Manager", "1234", RoleEnum.MANAGER, "mcdonalds.mc.pt", 123123123);
-        Restaurant restaurant = new Restaurant("McDonald's", "Number 1 in the fast food industry!", 123123123, State.OPEN, restaurantAddress, menu, manager);
+        Restaurant restaurant = new Restaurant("McDonald's", "Number 1 in the fast food industry!", 123123123, State.OPEN, restaurantAddress, manager);
         restaurant.setTimes("10:00:00", "04:00:00");
 
         Order order = new Order(LocalDateTime.now(), 5.0, deliveryAddress, restaurant, client, PickupMethod.DELIVERY); order.setId(1L);

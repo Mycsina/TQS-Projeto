@@ -59,7 +59,7 @@ class OrderItemServiceTest {
         Menu menu = new Menu();
         User client = new User("John Doe", "1234", RoleEnum.CLIENT, "john.doe.pt", 123123123, deliveryAddress);
         User manager = new User("McDonald's Manager", "1234", RoleEnum.MANAGER, "mcdonalds.mc.pt", 123123123);
-        Restaurant restaurant = new Restaurant("McDonald's", "Number 1 in the fast food industry!", 123123123, State.OPEN, restaurantAddress, menu, manager);
+        Restaurant restaurant = new Restaurant("McDonald's", "Number 1 in the fast food industry!", 123123123, State.OPEN, restaurantAddress, manager);
         Category category = new Category("Burgers", menu);
         Item item = new Item("Big Mac", "The most famous burger in the world!", "./images/bigmacpic", 5.0, restaurant, category);
         Order order = new Order(LocalDateTime.now(), 5.0, restaurant, client, PickupMethod.AT_RESTAURANT); order.setId(1L);
@@ -115,7 +115,7 @@ class OrderItemServiceTest {
         Menu menu = new Menu();
         User client = new User("John Doe", "1234", RoleEnum.CLIENT, "john.doe.pt", 123123123, deliveryAddress);
         User manager = new User("McDonald's Manager", "1234", RoleEnum.MANAGER, "mcdonalds.mc.pt", 123123123);
-        Restaurant restaurant = new Restaurant("McDonald's", "Number 1 in the fast food industry!", 123123123, State.OPEN, restaurantAddress, menu, manager);
+        Restaurant restaurant = new Restaurant("McDonald's", "Number 1 in the fast food industry!", 123123123, State.OPEN, restaurantAddress, manager);
         Category category = new Category("Burgers", menu);
         Item item = new Item("Big Mac", "The most famous burger in the world!", "./images/bigmacpic", 5.0, restaurant, category);
         Order order = new Order(LocalDateTime.now(), 5.0, restaurant, client, PickupMethod.AT_RESTAURANT);

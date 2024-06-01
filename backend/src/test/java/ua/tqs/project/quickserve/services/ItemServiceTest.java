@@ -52,7 +52,7 @@ class ItemServiceTest {
         Address address = new Address("Rua do Amial", "Porto", "4200-055", "Portugal");
         Menu menu = new Menu();
         User manager = new User("McDonald's Manager", "1234", RoleEnum.MANAGER, "mcdonalds.mc.pt", 123123123);
-        Restaurant restaurant = new Restaurant("McDonald's", "Number 1 in the fast food industry!", 123123123, State.OPEN, address, menu, manager);
+        Restaurant restaurant = new Restaurant("McDonald's", "Number 1 in the fast food industry!", 123123123, State.OPEN, address, manager);
         Category category = new Category("Burgers", menu); category.setId(1L);
         restaurant.setTimes("10:00:00", "04:00:00");
 
@@ -97,7 +97,7 @@ class ItemServiceTest {
         Address address = new Address("Rua do Amial", "Porto", "4200-055", "Portugal");
         Menu menu = new Menu();
         User manager = new User("McDonald's Manager", "1234", RoleEnum.MANAGER, "mcdonalds.mc.pt", 123123123);
-        Restaurant restaurant = new Restaurant("McDonald's", "Number 1 in the fast food industry!", 123123123, State.OPEN, address, menu, manager);
+        Restaurant restaurant = new Restaurant("McDonald's", "Number 1 in the fast food industry!", 123123123, State.OPEN, address, manager);
         Category category = new Category("Burgers", menu);
         restaurant.setTimes("10:00:00", "04:00:00");
 

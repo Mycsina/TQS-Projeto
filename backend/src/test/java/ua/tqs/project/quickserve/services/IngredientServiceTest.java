@@ -12,7 +12,6 @@ import org.mockito.quality.Strictness;
 
 import ua.tqs.project.quickserve.entities.Address;
 import ua.tqs.project.quickserve.entities.Ingredient;
-import ua.tqs.project.quickserve.entities.Menu;
 import ua.tqs.project.quickserve.entities.Restaurant;
 import ua.tqs.project.quickserve.entities.RoleEnum;
 import ua.tqs.project.quickserve.entities.State;
@@ -45,9 +44,8 @@ class IngredientServiceTest {
     @BeforeEach
     public void setUp() {
         Address address = new Address("Rua do Amial", "Porto", "4200-055", "Portugal");
-        Menu menu = new Menu();
         User manager = new User("McDonald's Manager", "1234", RoleEnum.MANAGER, "mcdonalds.mc.pt", 123123123);
-        Restaurant restaurant = new Restaurant("McDonald's", "Number 1 in the fast food industry!", 123123123, State.OPEN, address, menu, manager);
+        Restaurant restaurant = new Restaurant("McDonald's", "Number 1 in the fast food industry!", 123123123, State.OPEN, address, manager);
         restaurant.setTimes("10:00:00", "04:00:00");
 
 
@@ -80,9 +78,8 @@ class IngredientServiceTest {
     @Test
     void whenSaveIngredientthenIngredientShouldBeReturned() {
         Address address = new Address("Rua do Amial", "Porto", "4200-055", "Portugal");
-        Menu menu = new Menu();
         User manager = new User("McDonald's Manager", "1234", RoleEnum.MANAGER, "mcdonalds.mc.pt", 123123123);
-        Restaurant restaurant = new Restaurant("McDonald's", "Number 1 in the fast food industry!", 123123123, State.OPEN, address, menu, manager);
+        Restaurant restaurant = new Restaurant("McDonald's", "Number 1 in the fast food industry!", 123123123, State.OPEN, address, manager);
         restaurant.setTimes("10:00:00", "04:00:00");
 
         Ingredient ingredient = new Ingredient("Burger", 1.0, true, restaurant); ingredient.setId(1L);

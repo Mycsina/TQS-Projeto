@@ -11,6 +11,8 @@ import org.mockito.junit.jupiter.MockitoSettings;
 import org.mockito.quality.Strictness;
 
 import ua.tqs.project.quickserve.entities.Category;
+import ua.tqs.project.quickserve.dto.CategoryDTO;
+import ua.tqs.project.quickserve.dto.ItemDTO;
 import ua.tqs.project.quickserve.entities.Menu;
 import ua.tqs.project.quickserve.repositories.CategoryRepository;
 
@@ -33,6 +35,9 @@ class CategoryServiceTest {
 
     @Mock
     private CategoryRepository categoryRepository;
+
+    @Mock
+    private ItemService itemService;
 
     @InjectMocks
     private CategoryService categoryService;
@@ -88,4 +93,68 @@ class CategoryServiceTest {
         Mockito.verify(categoryRepository, times(1)).deleteById(categoryId);
     }
 
+    @Test
+    void whenGetCategoriesByMenuthenGetCategories() {
+        Menu menu = new Menu();
+        menu.setId(1L);
+
+        Category category1 = new Category("Burgers", menu); category1.setId(1L);
+        Category category2 = new Category("Sauces", menu); category2.setId(2L);
+        Category category3 = new Category("Drinks", menu); category3.setId(3L);
+
+        List<Category> allCategories = Arrays.asList(category1, category2, category3);
+
+        when( categoryService.getCategoriesByMenu(1L) ).thenReturn(allCategories);
+
+        assertThat(categoryService.getCategoriesByMenu(1L)).isNotNull();
+        assertThat(categoryService.getCategoriesByMenu(1L)).hasSize(3);
+    }
+
+    @Test
+    void whenExistsByNameAndMenuthenReturnTrue() {
+        Menu menu = new Menu();
+        menu.setId(1L);
+
+        Category category = new Category("Burgers", menu); category.setId(1L);
+
+        when( categoryRepository.findByNameAndMenuId("Burgers", menu.getId())).thenReturn(category);
+
+        assertThat(categoryService.existsByNameAndMenu("Burgers", menu.getId())).isTrue();
+    }
+
+    @Test
+    void whenExistsByNameAndMenuthenReturnFalse() {
+        Menu menu = new Menu();
+        menu.setId(1L);
+
+        when( categoryRepository.findByNameAndMenuId("Drinks", menu.getId())).thenReturn(null);
+
+        assertThat(categoryService.existsByNameAndMenu("Drinks", menu.getId())).isFalse();
+    }
+
+    @Test
+    void whenConvertCategoryListToDTOsthenReturnDTOList() {
+        Menu menu = new Menu();
+        menu.setId(1L);
+
+        Category category1 = new Category("Burgers", menu); category1.setId(1L);
+        Category category2 = new Category("Sauces", menu); category2.setId(2L);
+        Category category3 = new Category("Drinks", menu); category3.setId(3L);
+
+        List<Category> allCategories = Arrays.asList(category1, category2, category3);
+
+        ItemDTO itemDTO1 = new ItemDTO();
+        ItemDTO itemDTO2 = new ItemDTO();
+        ItemDTO itemDTO3 = new ItemDTO();
+
+        List<ItemDTO> allItemDTOs = Arrays.asList(itemDTO1, itemDTO2, itemDTO3);
+
+        when( itemService.convertItemListToDTOs(itemService.getItemsByCategory(category1.getId())) ).thenReturn(allItemDTOs);
+        when( itemService.convertItemListToDTOs(itemService.getItemsByCategory(category2.getId())) ).thenReturn(allItemDTOs);
+        when( itemService.convertItemListToDTOs(itemService.getItemsByCategory(category3.getId())) ).thenReturn(allItemDTOs);
+
+        List<CategoryDTO> allCategoryDTOs = categoryService.convertCategoryListToDTOs(allCategories);
+
+        assertThat(allCategoryDTOs).isNotNull().hasSize(3);
+    }
 }
