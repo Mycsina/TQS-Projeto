@@ -7,11 +7,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.time.LocalDateTime;
 
-import ua.tqs.project.quickserve.entities.Restaurant;
-import ua.tqs.project.quickserve.entities.User;
-import ua.tqs.project.quickserve.entities.Address;
-import ua.tqs.project.quickserve.entities.Order;
-import ua.tqs.project.quickserve.entities.PickupMethod;
+import ua.tqs.project.quickserve.entities.*;
 
 class BaseOrderDTOTest {
 
@@ -24,7 +20,7 @@ class BaseOrderDTOTest {
         assertThat(baseOrderDTO.getOrderId()).isEqualTo(1L);
 
         Address address = new Address();
-        BaseOrderDTO baseOrderDTO2 = new BaseOrderDTO(1L, 10.0, LocalDateTime.now(), address, 1L, 1L, PickupMethod.DELIVERY);
+        BaseOrderDTO baseOrderDTO2 = new BaseOrderDTO(1L, 10.0, LocalDateTime.now(), address, 1L, 1L, PickupMethod.DELIVERY, Status.ONGOING);
 
         assertThat(baseOrderDTO2.getPrice()).isEqualTo(10.0);
         assertThat(baseOrderDTO2.getScheduledTime()).isNotNull();
