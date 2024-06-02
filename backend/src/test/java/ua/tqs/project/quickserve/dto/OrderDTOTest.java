@@ -45,7 +45,7 @@ class OrderDTOTest {
         order.setPickupMethod(PickupMethod.DELIVERY);
 
         BaseItemDTO baseItemDTO = new BaseItemDTO();
-        baseItemDTO.setItemId(1L);
+        baseItemDTO.setName("Item");
 
         ItemDTO itemDTO = new ItemDTO();
         itemDTO.setItem(baseItemDTO);

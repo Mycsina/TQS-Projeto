@@ -19,12 +19,10 @@ class IngredientDTOTest {
 
         assertThat(ingredientDTO.getName()).isEqualTo("Ingredient");
 
-        IngredientDTO ingredientDTO2 = new IngredientDTO(1L, "Ingredient2", 0.5, 1L);
+        IngredientDTO ingredientDTO2 = new IngredientDTO("Ingredient2", 0.5);
 
-        assertThat(ingredientDTO2.getIngredientId()).isEqualTo(1L);
         assertThat(ingredientDTO2.getName()).isEqualTo("Ingredient2");
         assertThat(ingredientDTO2.getPrice()).isEqualTo(0.5);
-        assertThat(ingredientDTO2.getRestaurantId()).isEqualTo(1L);
 
         Restaurant restaurant = new Restaurant();
         restaurant.setId(1L);
@@ -39,7 +37,6 @@ class IngredientDTOTest {
         IngredientDTO ingredientDTO3 = new IngredientDTO(ingredient);
 
         assertThat(ingredientDTO3.getName()).isEqualTo("Ingredient3");
-        assertThat(ingredientDTO3.getRestaurantId()).isEqualTo(1L);
     }
 
 }

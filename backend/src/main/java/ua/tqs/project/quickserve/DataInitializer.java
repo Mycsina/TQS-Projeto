@@ -32,23 +32,24 @@ public class DataInitializer implements CommandLineRunner {
         // Restaurant 1
         Address a1 = new Address("Rua do Amial", "Porto", "4200-055", country);
         User u2 = new User("McDonald's Manager", "1234", RoleEnum.MANAGER, "mcdonalds.mc.pt", 123123123);
-        Restaurant r1 = new Restaurant("McDonald's", "Number 1 in the fast food industry!", 123123123, State.OPEN, a1, u2);
+        Restaurant r1 = new Restaurant("McDonald's", "Number 1 in the fast food industry!", 123122123, State.OPEN, a1, u2);
         r1.setTimes(LocalTime.of(10, 0, 0), LocalTime.of(4, 0, 0));
         Menu m1 = new Menu(r1);
 
         // Restaurant 2
         User u3 = new User("Burger Kings's Manager", "1234", RoleEnum.MANAGER, "bk.pt", 123123127);
         Address a3 = new Address("Rua do Abc", "Aveiro", "4220-035", country);
-        Restaurant r2 = new Restaurant("Burger King", "Number 2 in the fast food industry!", 123123123, State.OPEN, a3, u3);
+        Restaurant r2 = new Restaurant("Burger King", "Number 2 in the fast food industry!", 123123423, State.OPEN, a3, u3);
         r2.setTimes(LocalTime.of(10, 0, 0), LocalTime.of(4, 0, 0));
         Menu m2 = new Menu(r2);
 
         // Category
         Category c1 = new Category("Burgers", m1);
+        Category c2 = new Category("Burgers", m2);
 
         // Items
         Item i1 = new Item("Big Mac", "The most famous burger in the world!", "./images/bigmacpic", 5.0, r1, c1);
-        Item i2 = new Item("Whopper", "The most famous burger in the world!", "./images/whopperpic", 5.0, r2, c1);
+        Item i2 = new Item("Whopper", "The most famous burger in the world!", "./images/whopperpic", 5.0, r2, c2);
 
         // Ingredients
         Ingredient ing1 = new Ingredient("Bread", 0.5, false, r1);
@@ -79,6 +80,8 @@ public class DataInitializer implements CommandLineRunner {
         Address a2 = new Address("Casa do Joao", "Viseu", "4250-055", country);
         User u1 = new User("Joao", "1234", RoleEnum.CLIENT, "joao@joao.pt", 123123129, a2);
 
+        User u4 = new User("KFC Manager", "abcd", RoleEnum.MANAGER, "kfc.pt", 122333211);
+
         // Order
         Order o1 = new Order(LocalDateTime.now(), 5.0, a2, r1, u1, PickupMethod.DELIVERY, Status.IN_MAKING);
 
@@ -91,6 +94,7 @@ public class DataInitializer implements CommandLineRunner {
         userRepository.save(u1);
         userRepository.save(u2);
         userRepository.save(u3);
+        userRepository.save(u4);
         addressRepository.save(a1);
         addressRepository.save(a2);
         restaurantRepository.save(r1);
@@ -132,6 +136,7 @@ public class DataInitializer implements CommandLineRunner {
         addressRepository.save(a3);
         restaurantRepository.save(r2);
         menuRepository.save(m2);
+        categoryRepository.save(c2);
         itemRepository.save(i2);
         itemIngredientRepository.save(ii8);
         itemIngredientRepository.save(ii9);

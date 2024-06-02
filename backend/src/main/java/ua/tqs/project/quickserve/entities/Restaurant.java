@@ -63,5 +63,5 @@ public class Restaurant {
     public void setTimes(String openingTime, String closingTime) {
         this.openingTime = LocalTime.parse(openingTime);
         this.closingTime = LocalTime.parse(closingTime);
-    } 
+    }
 }

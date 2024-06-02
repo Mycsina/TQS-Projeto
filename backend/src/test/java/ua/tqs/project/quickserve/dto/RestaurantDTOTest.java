@@ -19,23 +19,21 @@ class RestaurantDTOTest {
     @Test
     void testConstructors() {
         RestaurantDTO restaurantDTO = new RestaurantDTO();
-        restaurantDTO.setRestaurantId(1L);
         restaurantDTO.setName("Restaurant");
         restaurantDTO.setDescription("Description");
         restaurantDTO.setPhoneNumber(123456789);
         restaurantDTO.setOpeningTime(LocalTime.of(10, 0));
         restaurantDTO.setClosingTime(LocalTime.of(22, 0));
-        restaurantDTO.setState("OPEN");
-        restaurantDTO.setAddress(new Address());
+        restaurantDTO.setState(State.OPEN);
+        restaurantDTO.setAddress(new AddressDTO());
         restaurantDTO.setManagerId(1L);
 
         assertThat(restaurantDTO.getName()).isEqualTo("Restaurant");
-        assertThat(restaurantDTO.getRestaurantId()).isEqualTo(1L);
         assertThat(restaurantDTO.getDescription()).isEqualTo("Description");
         assertThat(restaurantDTO.getPhoneNumber()).isEqualTo(123456789);
         assertThat(restaurantDTO.getOpeningTime()).isEqualTo(LocalTime.of(10, 0));
         assertThat(restaurantDTO.getClosingTime()).isEqualTo(LocalTime.of(22, 0));
-        assertThat(restaurantDTO.getState()).isEqualTo("OPEN");
+        assertThat(restaurantDTO.getState()).isEqualTo(State.OPEN);
         assertThat(restaurantDTO.getAddress()).isNotNull();
         assertThat(restaurantDTO.getManagerId()).isEqualTo(1L);
 
@@ -61,7 +59,6 @@ class RestaurantDTOTest {
         RestaurantDTO restaurantDTO2 = new RestaurantDTO(restaurant);
 
         assertThat(restaurantDTO2.getName()).isEqualTo("Restaurant2");
-        assertThat(restaurantDTO2.getRestaurantId()).isEqualTo(2L);
     }
 
 }

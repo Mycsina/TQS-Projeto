@@ -1,0 +1,15 @@
+{
+    "name": "KFC",
+    "description": "Finger Licking Good",
+    "phoneNumber": 123123123,
+    "openingTime": "09:30:00",
+    "closingTime": "18:00:00",
+    "state": "OPEN",
+    "address": {
+      "street": "string",
+      "city": "string",
+      "postalCode": "string",
+      "country": "string"
+    },
+    "managerId": 4
+  }

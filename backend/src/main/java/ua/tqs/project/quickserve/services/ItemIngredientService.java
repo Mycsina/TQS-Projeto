@@ -40,7 +40,7 @@ public class ItemIngredientService {
     }
 
     public void defineItemIngredient(ItemIngredientDTO itemIngredientDTO, Item item) {
-        Ingredient ingredient = ingredientService.defineIngredient(itemIngredientDTO.getIngredientDTO(), item);
+        Ingredient ingredient = ingredientService.defineIngredient(itemIngredientDTO.getIngredient(), item);
         save(new ItemIngredient(itemIngredientDTO.getQuantity(), itemIngredientDTO.isDefault(), item, ingredient));
     }
 
