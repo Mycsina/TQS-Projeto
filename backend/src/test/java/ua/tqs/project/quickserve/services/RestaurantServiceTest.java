@@ -70,6 +70,7 @@ class RestaurantServiceTest {
         Mockito.when(restaurantRepository.findById(restaurant2.getId())).thenReturn(Optional.of(restaurant2));
         Mockito.when(restaurantRepository.findById(-99L)).thenReturn(Optional.empty());
         Mockito.when(restaurantRepository.findAll()).thenReturn(allRestaurants);
+        Mockito.when(restaurantRepository.findOpenRestaurants()).thenReturn(allRestaurants);
 
         Mockito.when(restaurantRepository.save(restaurant1)).thenReturn(restaurant1);
 
