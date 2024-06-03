@@ -67,7 +67,7 @@ class IngredientRepositoryTest {
 
     @Test
     void whenFindAllIngredientsthenReturnIngredientes() {
-        Ingredient ingredient1 = new Ingredient("Burger", 1.0, true, restaurant);
+        Ingredient ingredient1 = new Ingredient("Burger", 1.0, restaurant);
         Ingredient ingredient2 = new Ingredient("Tomato", 0.6, true, restaurant);
         entityManager.persist(ingredient1);
         entityManager.persist(ingredient2);

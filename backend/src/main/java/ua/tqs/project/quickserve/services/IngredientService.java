@@ -27,6 +27,10 @@ public class IngredientService {
     }
 
     public Ingredient defineIngredient(IngredientDTO ingredientDTO, Item item) {
+        Ingredient ingredient = repository.findByNameAndRestaurant(ingredientDTO.getName(), item.getRestaurant().getId());
+        if (ingredient != null) {
+            return ingredient;
+        }
         return save(new Ingredient(ingredientDTO.getName(), ingredientDTO.getPrice(), item.getRestaurant()));
     }
 

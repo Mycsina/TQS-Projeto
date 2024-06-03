@@ -84,4 +84,14 @@ class AddressServiceTest {
         Mockito.verify(addressRepository, times(1)).deleteById(addressId);
     }
 
+    @Test
+    void whenGetAddressByPostalCodethenAddressShouldBeReturned() {
+        String postalCode = "4200-055";
+        Address address = new Address("Rua do Amial", "Porto", postalCode, "Portugal");
+        when(addressRepository.findByPostalCode(postalCode)).thenReturn(address);
+        
+        Address found = addressService.getAddressByPostalCode(postalCode);
+        assertThat(found.getPostalCode()).isEqualTo(postalCode);
+    }
+
 }

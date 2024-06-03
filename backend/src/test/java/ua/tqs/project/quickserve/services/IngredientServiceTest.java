@@ -10,8 +10,10 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.junit.jupiter.MockitoSettings;
 import org.mockito.quality.Strictness;
 
+import ua.tqs.project.quickserve.dto.IngredientDTO;
 import ua.tqs.project.quickserve.entities.Address;
 import ua.tqs.project.quickserve.entities.Ingredient;
+import ua.tqs.project.quickserve.entities.Item;
 import ua.tqs.project.quickserve.entities.Restaurant;
 import ua.tqs.project.quickserve.entities.RoleEnum;
 import ua.tqs.project.quickserve.entities.State;
@@ -29,6 +31,7 @@ import java.util.Optional;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.any;
 
 @ExtendWith(MockitoExtension.class)
 @MockitoSettings(strictness = Strictness.LENIENT)
@@ -98,6 +101,20 @@ class IngredientServiceTest {
             
         ingredientService.deleteIngredientById(ingredientId);
         Mockito.verify(ingredientRepository, times(1)).deleteById(ingredientId);
+    }
+
+    @Test
+    void whenDefineIngredientthenIngredientShouldBeDefined() {
+        Ingredient ingredient = ingredientRepository.findById(1L).get();
+        IngredientDTO ingredientDTO = new IngredientDTO(ingredient);
+
+        Item item = new Item();
+        Restaurant restaurant = new Restaurant();
+        restaurant.setId(1L);
+        item.setRestaurant(restaurant);
+
+        ingredientService.defineIngredient(ingredientDTO, item);
+        Mockito.verify(ingredientRepository, times(1)).save(any());
     }
 
 }

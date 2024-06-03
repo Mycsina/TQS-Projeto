@@ -27,6 +27,7 @@ import java.util.Optional;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.any;
 
 @ExtendWith(MockitoExtension.class)
 @MockitoSettings(strictness = Strictness.LENIENT)
@@ -156,5 +157,24 @@ class CategoryServiceTest {
         List<CategoryDTO> allCategoryDTOs = categoryService.convertCategoryListToDTOs(allCategories);
 
         assertThat(allCategoryDTOs).isNotNull().hasSize(3);
+    }
+
+    @Test
+    void whenDefineCategorythenCategoryShouldBeDefined() {
+        Menu menu = new Menu();
+        menu.setId(1L);
+
+        CategoryDTO categoryDTO = new CategoryDTO();
+        categoryDTO.setName("Burgers");
+
+        ItemDTO itemDTO1 = new ItemDTO();
+        ItemDTO itemDTO2 = new ItemDTO();
+        ItemDTO itemDTO3 = new ItemDTO();
+
+        categoryDTO.setItems(Arrays.asList(itemDTO1, itemDTO2, itemDTO3));
+
+        categoryService.defineCategory(categoryDTO, menu);
+
+        Mockito.verify(itemService, times(3)).defineItem(any(), any());
     }
 }

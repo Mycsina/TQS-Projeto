@@ -11,6 +11,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 
+import ua.tqs.project.quickserve.dto.AddressDTO;
 import ua.tqs.project.quickserve.entities.Address;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -76,5 +77,24 @@ class AddressRepositoryTest {
         assertThat(addressRepository.findById(id).get().getCountry()).isEqualTo("Portugal");
         addressRepository.delete(address);
         assertThat(addressRepository.findById(id)).isEmpty();
+    }
+
+    @Test
+    void whenFindAddressByPostalCodethenReturnAddress() {
+        Address address = new Address("Rua do Zé", "Porto", "4000-000", "Portugal");
+        entityManager.persistAndFlush(address);
+
+        Address found = addressRepository.findByPostalCode("4000-000");
+        assertThat(found).isNotNull();
+        assertThat(found.getCity()).isEqualTo("Porto");
+    }
+
+    @Test
+    void addressDTOConstructor() {
+        AddressDTO addressDTO = new AddressDTO("Rua do Zé", "Porto", "4000-000", "Portugal");
+        Address address = new Address(addressDTO);
+
+        assertThat(address.getStreet()).isEqualTo("Rua do Zé");
+        assertThat(address.getCity()).isEqualTo("Porto");
     }
 }

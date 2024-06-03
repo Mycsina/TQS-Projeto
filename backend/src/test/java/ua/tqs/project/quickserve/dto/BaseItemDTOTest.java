@@ -54,5 +54,10 @@ class BaseItemDTOTest {
 
         assertThat(itemDTO3.getPrice()).isEqualTo(10.0);
         assertThat(itemDTO3.getDescription()).isEqualTo("Description");
+
+        BaseItemDTO itemDTO4 = new BaseItemDTO("Item2", "Description2", "Image2", 20.0);
+
+        assertThat(itemDTO4.getName()).isEqualTo("Item2");
+        assertThat(itemDTO4.getDescription()).isEqualTo("Description2");
     }
 }
