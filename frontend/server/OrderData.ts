@@ -1,4 +1,3 @@
-"use server";
 
 import { Order } from "@/types/OrderTypes";
 import { API_URL, API_VERSION } from "@/lib/consts";
@@ -6,6 +5,7 @@ import { API_URL, API_VERSION } from "@/lib/consts";
 export async function getAllOrders() {
   try {
     const data = await fetch(`${API_URL}/api/${API_VERSION}/orders`);
+    console.log(data);
 
     if (data.status !== 200) {
       return null;
