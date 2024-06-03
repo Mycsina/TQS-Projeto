@@ -19,6 +19,10 @@ public class AddressService {
         return repository.findById(id).orElse(null);
     }
 
+    public Address getAddressByPostalCode(String postalCode) {
+        return repository.findByPostalCode(postalCode);
+    }
+
     public void deleteAddressById(long id) {
         repository.deleteById(id);
     }

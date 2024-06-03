@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import ua.tqs.project.quickserve.dto.AddressDTO;
 
 @Entity
 @Getter
@@ -45,5 +46,12 @@ public class Address {
         this.city = city;
         this.postalCode = postalCode;
         this.country = country;
+    }
+
+    public Address(AddressDTO addressDTO) {
+        this.street = addressDTO.getStreet();
+        this.city = addressDTO.getCity();
+        this.postalCode = addressDTO.getPostalCode();
+        this.country = addressDTO.getCountry();
     }
 }

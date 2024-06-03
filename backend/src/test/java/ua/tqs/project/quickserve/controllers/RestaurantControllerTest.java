@@ -72,4 +72,63 @@ class RestaurantControllerTest {
             .then()
                 .statusCode(200);
     }
+
+    @Test
+    void whenGetOpenRestaurantsthenGetRestaurants( ) {
+        Restaurant someRestaurant = new Restaurant();
+        Restaurant otherRestaurant = new Restaurant();
+
+        List<Restaurant> allRestaurants = Arrays.asList(someRestaurant, otherRestaurant);
+
+        when( service.getOpenRestaurants() ).thenReturn(allRestaurants);
+
+        RestaurantDTO someRestaurantDTO = new RestaurantDTO();
+        RestaurantDTO otherRestaurantDTO = new RestaurantDTO();
+
+        List<RestaurantDTO> allRestaurantDTOs = Arrays.asList(someRestaurantDTO, otherRestaurantDTO);
+
+        when( service.convertRestaurantListToDTOs(allRestaurants) ).thenReturn(allRestaurantDTOs);
+        
+        RestAssuredMockMvc
+            .given()
+            .when()
+                .get("/api/v1/restaurants/open")
+            .then()
+                .statusCode(200)
+                .body("$", hasSize(2));
+    }
+
+    @Test
+    void whenImportMenuthenMenuImported( ) {
+        RestAssuredMockMvc
+            .given()
+              .contentType("application/json")
+              .body("{\"restaurantId\":\"3\",\"categories\":[{\"name\":\"Burgers\",\"items\":[{\"item\":{\"name\":\"Coronel Single\",\"description\":\"The classic Coronel burger\",\"image\":\"coronel_single.jpg\",\"price\":5.99},\"itemIngredients\":[{\"quantity\":1,\"ingredient\":{\"name\":\"Chicken Fillet\",\"price\":1.99},\"default\":true},{\"quantity\":1,\"ingredient\":{\"name\":\"Cheese\",\"price\":0.39},\"default\":true},{\"quantity\":1,\"ingredient\":{\"name\":\"Lettuce\",\"price\":0.19},\"default\":true},{\"quantity\":1,\"ingredient\":{\"name\":\"Tomato\",\"price\":0.19},\"default\":true},{\"quantity\":1,\"ingredient\":{\"name\":\"Coronel Sauce\",\"price\":0.19},\"default\":true},{\"quantity\":1,\"ingredient\":{\"name\":\"Mayonnaise\",\"price\":0.19},\"default\":true}]}]}]}")
+            .when()
+                .post("/api/v1/restaurants/1/menu")
+            .then()
+                .statusCode(200);
+    }
+
+    @Test
+    void whenCreateRestaurantthenRestaurantCreated( ) {
+        RestAssuredMockMvc
+            .given()
+               .contentType("application/json")
+               .body("{\"name\":\"KFC\",\"description\":\"Finger Licking Good\",\"phoneNumber\":123123123,\"openingTime\":\"09:30:00\",\"closingTime\":\"18:00:00\",\"state\":\"OPEN\",\"address\":{\"street\":\"string\",\"city\":\"string\",\"postalCode\":\"string\",\"country\":\"string\"},\"managerId\":4}")
+            .when()
+                .post("/api/v1/restaurants")
+            .then()
+                .statusCode(201);
+    }
+
+    @Test
+    void whenDeleteRestaurantthenRestaurantShouldBeDeleted( ) {
+        RestAssuredMockMvc
+            .given()
+            .when()
+                .delete("/api/v1/restaurants/1")
+            .then()
+                .statusCode(200);
+    }
 }

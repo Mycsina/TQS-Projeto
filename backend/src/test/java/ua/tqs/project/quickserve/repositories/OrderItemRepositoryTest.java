@@ -52,10 +52,10 @@ class OrderItemRepositoryTest {
     void setUp() {
         this.restaurantAddress = new Address("Rua do Amial", "Porto", "4200-055", "Portugal");
         this.deliveryAddress = new Address("Rua do Amial", "Porto", "4200-055", "Portugal");
-        this.menu = new Menu();
         this.client = new User("John Doe", "1234", RoleEnum.CLIENT, "john.doe.pt", 12312312, deliveryAddress);
         this.manager = new User("McDonald's Manager", "1234", RoleEnum.MANAGER, "mcdonalds.mc.pt", 123123126);
-        this.restaurant = new Restaurant("McDonald's", "Number 1 in the fast food industry!", 123123127, State.OPEN, restaurantAddress, menu, manager);
+        this.restaurant = new Restaurant("McDonald's", "Number 1 in the fast food industry!", 123123127, State.OPEN, restaurantAddress, manager);
+        this.menu = new Menu(restaurant);
         this.category = new Category("Burgers", menu);
         this.item = new Item("Big Mac", "The most famous burger in the world!", "./images/bigmacpic", 5.0, restaurant, category);
         this.order = new Order(LocalDateTime.now(), 5.0, restaurant, client, PickupMethod.AT_RESTAURANT);
@@ -64,10 +64,10 @@ class OrderItemRepositoryTest {
 
         entityManager.persistAndFlush(restaurantAddress);
         entityManager.persistAndFlush(deliveryAddress);
-        entityManager.persistAndFlush(menu);
         entityManager.persistAndFlush(client);
         entityManager.persistAndFlush(manager);
         entityManager.persistAndFlush(restaurant);
+        entityManager.persistAndFlush(menu);
         entityManager.persistAndFlush(category);
         entityManager.persistAndFlush(item);
         entityManager.persistAndFlush(order);

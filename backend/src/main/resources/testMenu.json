@@ -1,0 +1,68 @@
+{
+    "restaurantId": "3",
+    "categories" : [
+        {
+            "name" : "Burgers",
+            "items" : [
+                {
+                    "item" : {
+                        "name" : "Coronel Single",
+                        "description" : "The classic Coronel burger",
+                        "image" : "coronel_single.jpg",
+                        "price" : 5.99
+                    },
+                    "itemIngredients" : [
+                        {
+                            "quantity" : 1,
+                            "ingredient" : {
+                                "name" : "Chicken Fillet",
+                                "price" : 1.99
+                            },
+                            "default" : true
+                        },
+                        {
+                            "quantity" : 1,
+                            "ingredient" : {
+                                "name" : "Cheese",
+                                "price" : 0.39
+                            },
+                            "default" : true
+                        },
+                        {
+                            "quantity" : 1,
+                            "ingredient" : {
+                                "name" : "Lettuce",
+                                "price" : 0.19
+                            },
+                            "default" : true
+                        },
+                        {
+                            "quantity" : 1,
+                            "ingredient" : {
+                                "name" : "Tomato",
+                                "price" : 0.19
+                            },
+                            "default" : true
+                        },
+                        {
+                            "quantity" : 1,
+                            "ingredient" : {
+                                "name" : "Coronel Sauce",
+                                "price" : 0.19
+                            },
+                            "default" : true
+                        },
+                        {
+                            "quantity" : 1,
+                            "ingredient" : {
+                                "name" : "Mayonnaise",
+                                "price" : 0.19
+                            },
+                            "default" : true
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

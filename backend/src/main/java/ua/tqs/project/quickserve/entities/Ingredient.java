@@ -38,4 +38,11 @@ public class Ingredient {
         this.canBeChanged = canBeChanged;
         this.restaurant = restaurant;
     }
+
+    public Ingredient(String name, double price, Restaurant restaurant) {
+        this.name = name;
+        this.price = price;
+        this.canBeChanged = false;
+        this.restaurant = restaurant;
+    }
 }

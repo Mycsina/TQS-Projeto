@@ -2,6 +2,7 @@ package ua.tqs.project.quickserve.repositories;
 
 import java.util.List;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,12 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 
+import ua.tqs.project.quickserve.entities.Address;
 import ua.tqs.project.quickserve.entities.Menu;
+import ua.tqs.project.quickserve.entities.Restaurant;
+import ua.tqs.project.quickserve.entities.RoleEnum;
+import ua.tqs.project.quickserve.entities.State;
+import ua.tqs.project.quickserve.entities.User;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -26,10 +32,26 @@ class MenuRepositoryTest {
     @Autowired
     private MenuRepository menuRepository;
 
+    private Address address;
+    private User manager;
+    private Restaurant restaurant;
+
+    @BeforeEach
+    void setUp() {
+        this.address = new Address("Rua do Amial", "Porto", "4200-055", "Portugal");
+        this.manager = new User("McDonald's Manager", "1234", RoleEnum.MANAGER, "mcdonalds.mc.pt", 123123123);
+        this.restaurant = new Restaurant("McDonald's", "Number 1 in the fast food industry!", 123123123, State.OPEN, address, manager);
+        restaurant.setTimes("10:00:00", "04:00:00");
+
+        entityManager.persistAndFlush(address);
+        entityManager.persistAndFlush(manager);
+        entityManager.persistAndFlush(restaurant);
+    }
+
     @Test
     @DisplayName("Find Menu By Id")
     void whenFindMenuByIdthenReturnMenu() {
-        Menu menu = new Menu();
+        Menu menu = new Menu(restaurant);
 
         entityManager.persistAndFlush(menu); //ensure data is persisted at this point
 
@@ -40,20 +62,18 @@ class MenuRepositoryTest {
     }
 
     @Test
-    void whenFindAllMenuesthenReturnMenues() {
-        Menu menu1 = new Menu();
-        Menu menu2 = new Menu();
-        entityManager.persist(menu1);
-        entityManager.persist(menu2);
+    void whenFindAllMenusthenReturnMenus() {
+        Menu menu = new Menu(restaurant);
+        entityManager.persist(menu);
         entityManager.flush();
         
         List<Menu> found = menuRepository.findAll();
-        assertThat(found).hasSize(2);
+        assertThat(found).hasSize(1);
     }
 
     @Test 
     void saveMenu() {
-        Menu menu = new Menu();
+        Menu menu = new Menu(restaurant);
         long id = menu.getId();
 
         menuRepository.save(menu);
@@ -62,7 +82,7 @@ class MenuRepositoryTest {
 
     @Test
     void deleteMenu() {
-        Menu menu = new Menu();
+        Menu menu = new Menu(restaurant);
         entityManager.persistAndFlush(menu);
         long id = menu.getId();
 

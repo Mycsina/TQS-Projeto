@@ -10,9 +10,10 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.junit.jupiter.MockitoSettings;
 import org.mockito.quality.Strictness;
 
+import ua.tqs.project.quickserve.dto.IngredientDTO;
 import ua.tqs.project.quickserve.entities.Address;
 import ua.tqs.project.quickserve.entities.Ingredient;
-import ua.tqs.project.quickserve.entities.Menu;
+import ua.tqs.project.quickserve.entities.Item;
 import ua.tqs.project.quickserve.entities.Restaurant;
 import ua.tqs.project.quickserve.entities.RoleEnum;
 import ua.tqs.project.quickserve.entities.State;
@@ -30,6 +31,7 @@ import java.util.Optional;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.any;
 
 @ExtendWith(MockitoExtension.class)
 @MockitoSettings(strictness = Strictness.LENIENT)
@@ -45,9 +47,8 @@ class IngredientServiceTest {
     @BeforeEach
     public void setUp() {
         Address address = new Address("Rua do Amial", "Porto", "4200-055", "Portugal");
-        Menu menu = new Menu();
         User manager = new User("McDonald's Manager", "1234", RoleEnum.MANAGER, "mcdonalds.mc.pt", 123123123);
-        Restaurant restaurant = new Restaurant("McDonald's", "Number 1 in the fast food industry!", 123123123, State.OPEN, address, menu, manager);
+        Restaurant restaurant = new Restaurant("McDonald's", "Number 1 in the fast food industry!", 123123123, State.OPEN, address, manager);
         restaurant.setTimes("10:00:00", "04:00:00");
 
 
@@ -80,9 +81,8 @@ class IngredientServiceTest {
     @Test
     void whenSaveIngredientthenIngredientShouldBeReturned() {
         Address address = new Address("Rua do Amial", "Porto", "4200-055", "Portugal");
-        Menu menu = new Menu();
         User manager = new User("McDonald's Manager", "1234", RoleEnum.MANAGER, "mcdonalds.mc.pt", 123123123);
-        Restaurant restaurant = new Restaurant("McDonald's", "Number 1 in the fast food industry!", 123123123, State.OPEN, address, menu, manager);
+        Restaurant restaurant = new Restaurant("McDonald's", "Number 1 in the fast food industry!", 123123123, State.OPEN, address, manager);
         restaurant.setTimes("10:00:00", "04:00:00");
 
         Ingredient ingredient = new Ingredient("Burger", 1.0, true, restaurant); ingredient.setId(1L);
@@ -101,6 +101,20 @@ class IngredientServiceTest {
             
         ingredientService.deleteIngredientById(ingredientId);
         Mockito.verify(ingredientRepository, times(1)).deleteById(ingredientId);
+    }
+
+    @Test
+    void whenDefineIngredientthenIngredientShouldBeDefined() {
+        Ingredient ingredient = ingredientRepository.findById(1L).get();
+        IngredientDTO ingredientDTO = new IngredientDTO(ingredient);
+
+        Item item = new Item();
+        Restaurant restaurant = new Restaurant();
+        restaurant.setId(1L);
+        item.setRestaurant(restaurant);
+
+        ingredientService.defineIngredient(ingredientDTO, item);
+        Mockito.verify(ingredientRepository, times(1)).save(any());
     }
 
 }

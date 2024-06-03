@@ -16,4 +16,12 @@ public class Menu {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+
+    @OneToOne
+    @JoinColumn(name = "restaurant_id", unique = true)
+    private Restaurant restaurant;
+
+    public Menu(Restaurant restaurant) {
+        this.restaurant = restaurant;
+    }
 }

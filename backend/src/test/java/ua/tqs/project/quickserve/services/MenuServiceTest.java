@@ -11,6 +11,9 @@ import org.mockito.junit.jupiter.MockitoSettings;
 import org.mockito.quality.Strictness;
 
 import ua.tqs.project.quickserve.entities.Menu;
+import ua.tqs.project.quickserve.dto.MenuDTO;
+import ua.tqs.project.quickserve.dto.CategoryDTO;
+import ua.tqs.project.quickserve.entities.Restaurant;
 import ua.tqs.project.quickserve.repositories.MenuRepository;
 
 import org.apache.logging.log4j.Logger;
@@ -24,6 +27,7 @@ import java.util.Optional;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.any;
 
 @ExtendWith(MockitoExtension.class)
 @MockitoSettings(strictness = Strictness.LENIENT)
@@ -33,14 +37,21 @@ class MenuServiceTest {
     @Mock
     private MenuRepository menuRepository;
 
+    @Mock
+    private CategoryService categoryService;
+
     @InjectMocks
     private MenuService menuService;
 
     @BeforeEach
     public void setUp() {
-        Menu menu1 = new Menu(); menu1.setId(1L);
-        Menu menu2 = new Menu(); menu2.setId(2L);
-        Menu menu3 = new Menu(); menu3.setId(3L);
+        Restaurant restaurant1 = new Restaurant(); restaurant1.setId(1L);
+        Restaurant restaurant2 = new Restaurant(); restaurant2.setId(2L);
+        Restaurant restaurant3 = new Restaurant(); restaurant3.setId(3L);
+
+        Menu menu1 = new Menu(restaurant1); menu1.setId(1L);
+        Menu menu2 = new Menu(restaurant2); menu2.setId(2L);
+        Menu menu3 = new Menu(restaurant3); menu3.setId(3L);
 
         List<Menu> allMenus = Arrays.asList(menu1, menu2, menu3);
 
@@ -50,6 +61,7 @@ class MenuServiceTest {
         Mockito.when(menuRepository.findAll()).thenReturn(allMenus);
 
         Mockito.when(menuRepository.save(menu1)).thenReturn(menu1);
+        Mockito.when(menuRepository.save(any())).thenReturn(menu1);
     }
     
     @Test
@@ -84,4 +96,22 @@ class MenuServiceTest {
         Mockito.verify(menuRepository, times(1)).deleteById(menuId);
     }
 
+    @Test
+    void whenDefineMenuThenMenuShouldBeDefined() {
+        Menu menu = menuRepository.findById(1L).get();
+
+        MenuDTO menuDTO = new MenuDTO();
+        CategoryDTO categoryDTO = new CategoryDTO();
+        menuDTO.setCategories(Arrays.asList(categoryDTO));
+
+        menuService.defineMenu(menuDTO, menu.getRestaurant());
+        Mockito.verify(categoryService, times(1)).defineCategory(any(CategoryDTO.class), any(Menu.class));
+    }
+
+    @Test
+    void whenConvertMenuToDTOThenMenuDTOShouldBeReturned() {
+        Menu menu = menuRepository.findById(1L).get();
+
+        assertThat(menuService.convertMenuToDTO(menu)).isNotNull();
+    }
 }

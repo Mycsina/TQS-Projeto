@@ -13,6 +13,8 @@ import org.mockito.quality.Strictness;
 import ua.tqs.project.quickserve.entities.Address;
 import ua.tqs.project.quickserve.entities.Category;
 import ua.tqs.project.quickserve.entities.Item;
+import ua.tqs.project.quickserve.entities.Ingredient;
+import ua.tqs.project.quickserve.entities.ItemIngredient;
 import ua.tqs.project.quickserve.entities.Menu;
 import ua.tqs.project.quickserve.entities.Restaurant;
 import ua.tqs.project.quickserve.entities.RoleEnum;
@@ -32,6 +34,7 @@ import java.util.Optional;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.any;
 
 @ExtendWith(MockitoExtension.class)
 @MockitoSettings(strictness = Strictness.LENIENT)
@@ -52,7 +55,7 @@ class ItemServiceTest {
         Address address = new Address("Rua do Amial", "Porto", "4200-055", "Portugal");
         Menu menu = new Menu();
         User manager = new User("McDonald's Manager", "1234", RoleEnum.MANAGER, "mcdonalds.mc.pt", 123123123);
-        Restaurant restaurant = new Restaurant("McDonald's", "Number 1 in the fast food industry!", 123123123, State.OPEN, address, menu, manager);
+        Restaurant restaurant = new Restaurant("McDonald's", "Number 1 in the fast food industry!", 123123123, State.OPEN, address, manager);
         Category category = new Category("Burgers", menu); category.setId(1L);
         restaurant.setTimes("10:00:00", "04:00:00");
 
@@ -70,6 +73,7 @@ class ItemServiceTest {
 
         Mockito.when(itemRepository.save(item1)).thenReturn(item1);
         Mockito.when(itemRepository.findByCategoryId(category.getId())).thenReturn(Arrays.asList(item1, item2, item3));
+        Mockito.when(itemRepository.findByNameAndCategoryId(item1.getName(), category.getId())).thenReturn(item1);
 
         Mockito.when(itemIngredientService.getItemIngredients(item1.getId())).thenReturn(Arrays.asList());
     }
@@ -97,7 +101,7 @@ class ItemServiceTest {
         Address address = new Address("Rua do Amial", "Porto", "4200-055", "Portugal");
         Menu menu = new Menu();
         User manager = new User("McDonald's Manager", "1234", RoleEnum.MANAGER, "mcdonalds.mc.pt", 123123123);
-        Restaurant restaurant = new Restaurant("McDonald's", "Number 1 in the fast food industry!", 123123123, State.OPEN, address, menu, manager);
+        Restaurant restaurant = new Restaurant("McDonald's", "Number 1 in the fast food industry!", 123123123, State.OPEN, address, manager);
         Category category = new Category("Burgers", menu);
         restaurant.setTimes("10:00:00", "04:00:00");
 
@@ -132,4 +136,36 @@ class ItemServiceTest {
         ItemDTO itemDTO = itemService.convertItemToDTO(item);
         assertThat(itemDTO).isNotNull();
     }
+
+    @Test
+    void whenGetAllItemsthenReturnItems() {
+        List<Item> allItems = itemService.getAllItems();
+        assertThat(allItems).hasSize(3);
+    }
+
+    @Test
+    void whenExistsByNameAndCategorythenReturnTrue() {
+        String name = "Big Mac";
+        Long categoryId = 1L;
+        boolean exists = itemService.existsByNameAndCategory(name, categoryId);
+        assertThat(exists).isTrue();
+    }
+
+    @Test
+    void whenDefineItemthenItemShouldBeDefined() {
+        Address address = new Address("Rua do Amial", "Porto", "4200-055", "Portugal");
+        Menu menu = new Menu();
+        User manager = new User("McDonald's Manager", "1234", RoleEnum.MANAGER, "mcdonalds.mc.pt", 123123123);
+        Restaurant restaurant = new Restaurant("McDonald's", "Number 1 in the fast food industry!", 123123123, State.OPEN, address, manager);
+        Category category = new Category("Burgers", menu);
+        restaurant.setTimes("10:00:00", "04:00:00");
+
+        Item item = new Item("Big Mac", "The most famous burger in the world!", "./images/bigmacpic", 5.0, restaurant, category); item.setId(1L);
+
+        List<ItemIngredient> itemIngredients = Arrays.asList(new ItemIngredient(2, true, item, new Ingredient("Bread", 0.5, false, item.getRestaurant())));
+        ItemDTO itemDTO = new ItemDTO(item, itemIngredients);
+
+        itemService.defineItem(itemDTO, item.getCategory());
+        Mockito.verify(itemIngredientService, times(1)).defineItemIngredient(any(),any());
+    }   
 }

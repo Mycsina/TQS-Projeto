@@ -10,6 +10,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.junit.jupiter.MockitoSettings;
 import org.mockito.quality.Strictness;
 
+import ua.tqs.project.quickserve.dto.IngredientDTO;
+import ua.tqs.project.quickserve.dto.ItemIngredientDTO;
 import ua.tqs.project.quickserve.entities.Address;
 import ua.tqs.project.quickserve.entities.Category;
 import ua.tqs.project.quickserve.entities.Ingredient;
@@ -47,7 +49,7 @@ class ItemIngredientServiceTest {
     private ItemIngredientRepository itemIngredientRepository;
 
     @Mock
-    private OrderItemService orderItemService;
+    private IngredientService ingredientService;
 
     @InjectMocks
     private ItemIngredientService itemIngredientService;
@@ -59,7 +61,7 @@ class ItemIngredientServiceTest {
         Menu menu = new Menu();
         User manager = new User("McDonald's Manager", "1234", RoleEnum.MANAGER, "mcdonalds.mc.pt", 123123123);
         User client = new User("John Doe", "1234", RoleEnum.CLIENT, "john.doe.pt", 123123123, deliveryAddress); 
-        Restaurant restaurant = new Restaurant("McDonald's", "Number 1 in the fast food industry!", 123123123, State.OPEN, address, menu, manager);
+        Restaurant restaurant = new Restaurant("McDonald's", "Number 1 in the fast food industry!", 123123123, State.OPEN, address, manager);
         Category category = new Category("Burgers", menu);
         Item item = new Item("Big Mac", "The most famous burger in the world!", "./images/bigmacpic", 5.0, restaurant, category); item.setId(1L);
         Ingredient ingredient1 = new Ingredient("Burger", 1.0, true, restaurant);
@@ -85,8 +87,6 @@ class ItemIngredientServiceTest {
         Mockito.when(itemIngredientRepository.findByOrderItemId(orderItem.getId())).thenReturn(Arrays.asList(itemIngredient3));
 
         Mockito.when(itemIngredientRepository.save(itemIngredient1)).thenReturn(itemIngredient1);
-
-        Mockito.when(orderItemService.getOrderItemById(orderItem.getId())).thenReturn(orderItem);
     }
     
     @Test
@@ -106,7 +106,7 @@ class ItemIngredientServiceTest {
         Address address = new Address("Rua do Amial", "Porto", "4200-055", "Portugal");
         Menu menu = new Menu();
         User manager = new User("McDonald's Manager", "1234", RoleEnum.MANAGER, "mcdonalds.mc.pt", 123123123);
-        Restaurant restaurant = new Restaurant("McDonald's", "Number 1 in the fast food industry!", 123123123, State.OPEN, address, menu, manager);
+        Restaurant restaurant = new Restaurant("McDonald's", "Number 1 in the fast food industry!", 123123123, State.OPEN, address, manager);
         Category category = new Category("Burgers", menu);
         Item item = new Item("Big Mac", "The most famous burger in the world!", "./images/bigmacpic", 5.0, restaurant, category);
         Ingredient ingredient1 = new Ingredient("Burger", 1.0, true, restaurant);
@@ -122,11 +122,37 @@ class ItemIngredientServiceTest {
     void whenDeleteItemIngredientthenItemIngredientShouldBeDeleted() {
         Long itemIngredientId = 1L;
 
-        // Setup mock behavior
         when(itemIngredientRepository.findById(itemIngredientId)).thenReturn(Optional.of(new ItemIngredient()));
             
         itemIngredientService.deleteItemIngredientById(itemIngredientId);
         Mockito.verify(itemIngredientRepository, times(1)).deleteById(itemIngredientId);
     }
 
+    @Test
+    void whenGetItemIngredientsByItemIdthenItemIngredientsShouldBeReturned() {
+        Long itemId = 1L;
+
+        List<ItemIngredient> itemIngredients = itemIngredientService.getByItemId(itemId);
+        assertThat(itemIngredients).isNotNull().hasSize(2);
+    }
+
+    @Test
+    void whenGetItemIngredientsByOrderItemIdthenItemIngredientsShouldBeReturned() {
+        Long orderItemId = 1L;
+
+        List<ItemIngredient> itemIngredients = itemIngredientService.getByOrderItemId(orderItemId);
+        assertThat(itemIngredients).isNotNull().hasSize(1);
+    }
+
+    @Test
+    void whenDefineItemIngredientThenItemIngredientShouldBeDefined() {
+        ItemIngredientDTO itemIngredientDTO = new ItemIngredientDTO();
+        itemIngredientDTO.setQuantity(2);
+        itemIngredientDTO.setIngredient(new IngredientDTO());
+
+        Item item = new Item();
+
+        itemIngredientService.defineItemIngredient(itemIngredientDTO, item);
+        Mockito.verify(ingredientService, times(1)).defineIngredient(itemIngredientDTO.getIngredient(), item);
+    }
 }

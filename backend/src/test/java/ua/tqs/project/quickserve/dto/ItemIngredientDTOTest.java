@@ -21,19 +21,17 @@ class ItemIngredientDTOTest {
     @Test
     void testConstructors() {
         ItemIngredientDTO itemIngredientDTO = new ItemIngredientDTO();
-        itemIngredientDTO.setIngredientDTO(new IngredientDTO());
+        itemIngredientDTO.setIngredient(new IngredientDTO());
         itemIngredientDTO.setQuantity(10);
         itemIngredientDTO.setDefault(true);
-        itemIngredientDTO.setItemIngredientId(1L);
 
         assertThat(itemIngredientDTO.getQuantity()).isEqualTo(10);
 
         IngredientDTO ingredientDTO = new IngredientDTO();
-        ItemIngredientDTO itemIngredientDTO2 = new ItemIngredientDTO(1L, true, ingredientDTO, 5);
+        ItemIngredientDTO itemIngredientDTO2 = new ItemIngredientDTO(true, ingredientDTO, 5);
 
-        assertThat(itemIngredientDTO2.getItemIngredientId()).isEqualTo(1L);
         assertThat(itemIngredientDTO2.isDefault()).isTrue();
-        assertThat(itemIngredientDTO2.getIngredientDTO()).isEqualTo(ingredientDTO);
+        assertThat(itemIngredientDTO2.getIngredient()).isEqualTo(ingredientDTO);
         assertThat(itemIngredientDTO2.getQuantity()).isEqualTo(5);
 
         ItemIngredient itemIngredient = new ItemIngredient();
