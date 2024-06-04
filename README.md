@@ -1,5 +1,21 @@
-[![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=Mycsina_TQS-Projeto)](https://sonarcloud.io/summary/new_code?id=Mycsina_TQS-Projeto)
+# TQS-Projeto - QuickServe
 
-# TQS-Projeto
-## Product Specification Report
-The product specification report can be accessed [here](https://uapt33090-my.sharepoint.com/:w:/g/personal/andremacardoso_ua_pt/EXtw7mrLPPRLvrl7l7xyxuAB0Se5QqKWsGV9ppdSnKC7Pw?e=ITGc6Y)
+## Description
+
+QuickServe is an innovative management platform designed to revolutionize the fast-food industry by providing a comprehensive solution for streamlining operations, enhancing customer experience, and empowering kitchen staff with real-time insights.
+
+The platform is tailored to meet the unique needs of system managers, customers, and kitchen employees, ensuring a seamless and efficient dining experience.
+
+## Team Members
+**(108269)** - André Miguel Antunes Cardoso - *Team Leader & Product Owner*  
+**(107263)** - Tiago Alexandre Abreu Figueiredo - *QA Engineer*  
+**(108122)** - Alexandre Pedro Ribeiro - *DevOps master*  
+
+
+## Relevant Resources
+- [Project Board](https://mycsina.atlassian.net/jira/software/projects/SCRUM/boards/1/backlog)
+- [Product Specification Report](https://uapt33090-my.sharepoint.com/:w:/g/personal/andremacardoso_ua_pt/EXtw7mrLPPRLvrl7l7xyxuAB0Se5QqKWsGV9ppdSnKC7Pw?e=ITGc6Y)
+- [QA Manual](https://uapt33090-my.sharepoint.com/:w:/g/personal/tiago_a_figueiredo_ua_pt/EVOMNHvvGTZGvFMZfB7XjeABoiQg44Z-53_IpPPsO8qRKg?e=ObavrZ)
+- [API Documentation](https://uapt33090-my.sharepoint.com/:w:/g/personal/andremacardoso_ua_pt/EXtw7mrLPPRLvrl7l7xyxuAB0Se5QqKWsGV9ppdSnKC7Pw?e=ITGc6Y)
+- [SonarCloud Dashboard](https://sonarcloud.io/project/branches_list?id=Mycsina_TQS-Projeto)
+- [CI/CD Pipeline](https://github.com/Mycsina/TQS-Projeto/actions)
