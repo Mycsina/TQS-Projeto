@@ -1,6 +1,8 @@
 import { getAllOrders } from "@/server/OrderData"
 import Dashboard from "@/components/dashboard"
 
+export const revalidate = 0;
+
 export default async function Component() {
   const orders = await getAllOrders();
   if (orders === null) {

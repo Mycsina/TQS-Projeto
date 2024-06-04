@@ -14,6 +14,8 @@ import { get_restaurants } from "@/server/Restaurants";
 import Link from "next/link";
 import { getRestaurantMenu } from "@/server/Items";
 
+export const revalidate = 0;
+
 export default async function Home(props: {
     searchParams: {
         r: number, // Last Restaurant
