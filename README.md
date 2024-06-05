@@ -16,6 +16,6 @@ The platform is tailored to meet the unique needs of system managers, customers,
 - [Project Board](https://mycsina.atlassian.net/jira/software/projects/SCRUM/boards/1/backlog)
 - [Product Specification Report](https://uapt33090-my.sharepoint.com/:w:/g/personal/andremacardoso_ua_pt/EXtw7mrLPPRLvrl7l7xyxuAB0Se5QqKWsGV9ppdSnKC7Pw?e=ITGc6Y)
 - [QA Manual](https://uapt33090-my.sharepoint.com/:w:/g/personal/tiago_a_figueiredo_ua_pt/EVOMNHvvGTZGvFMZfB7XjeABoiQg44Z-53_IpPPsO8qRKg?e=ObavrZ)
-- [API Documentation](https://uapt33090-my.sharepoint.com/:w:/g/personal/andremacardoso_ua_pt/EXtw7mrLPPRLvrl7l7xyxuAB0Se5QqKWsGV9ppdSnKC7Pw?e=ITGc6Y)
+- [API Documentation](http://deti-tqs-05.ua.pt/swagger-ui/index.html#/)
 - [SonarCloud Dashboard](https://sonarcloud.io/project/branches_list?id=Mycsina_TQS-Projeto)
 - [CI/CD Pipeline](https://github.com/Mycsina/TQS-Projeto/actions)
