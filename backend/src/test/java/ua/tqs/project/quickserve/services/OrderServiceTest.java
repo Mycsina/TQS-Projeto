@@ -109,7 +109,7 @@ class OrderServiceTest {
     void whenConvertOrderToDTOthenReturnOrderDTO() {
         Order order = orderRepository.findById(1L).get();
         OrderDTO orderDTO = orderService.convertOrderToDTO(order);
-        assertThat(orderDTO.getOrder().getOrderId()).isEqualTo(order.getId());
+        assertThat(orderDTO.getOrder().getPrice()).isEqualTo(order.getTotalPrice());
     }
 
     @Test

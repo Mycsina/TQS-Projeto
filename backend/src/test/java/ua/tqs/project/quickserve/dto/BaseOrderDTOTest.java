@@ -15,12 +15,12 @@ class BaseOrderDTOTest {
     @Test
     void testConstructors() {
         BaseOrderDTO baseOrderDTO = new BaseOrderDTO();
-        baseOrderDTO.setOrderId(1L);
+        baseOrderDTO.setPrice(10.0);
 
-        assertThat(baseOrderDTO.getOrderId()).isEqualTo(1L);
+        assertThat(baseOrderDTO.getPrice()).isEqualTo(10.0);
 
         Address address = new Address();
-        BaseOrderDTO baseOrderDTO2 = new BaseOrderDTO(1L, 10.0, LocalDateTime.now(), address, 1L, 1L, PickupMethod.DELIVERY, Status.ONGOING);
+        BaseOrderDTO baseOrderDTO2 = new BaseOrderDTO(10.0, LocalDateTime.now(), address, 1L, 1L, PickupMethod.DELIVERY, Status.ONGOING);
 
         assertThat(baseOrderDTO2.getPrice()).isEqualTo(10.0);
         assertThat(baseOrderDTO2.getScheduledTime()).isNotNull();
@@ -48,7 +48,6 @@ class BaseOrderDTOTest {
 
         BaseOrderDTO baseOrderDTO3 = new BaseOrderDTO(order);
 
-        assertThat(baseOrderDTO3.getOrderId()).isEqualTo(2L);
         assertThat(baseOrderDTO3.getRestaurantId()).isEqualTo(1L);
         assertThat(baseOrderDTO3.getUserId()).isEqualTo(1L);
     }
