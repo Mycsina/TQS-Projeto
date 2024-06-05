@@ -43,7 +43,7 @@ export default async function Home(props: {
     const partition = res > 5 ? res - 5 : 0;
     const restaurants = data.slice(partition, res);
 
-    const menu = await getRestaurantMenu(sel);
+    const menu = await getRestaurantMenu(sel || 1);
 
     if (menu === null) {
         return (
