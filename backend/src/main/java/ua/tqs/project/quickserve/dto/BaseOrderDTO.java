@@ -15,8 +15,6 @@ import ua.tqs.project.quickserve.entities.Status;
 @Getter
 @Setter
 public class BaseOrderDTO {
-    @JsonProperty("orderId")
-    long orderId;
 
     @JsonProperty("price")
     double price;
@@ -45,8 +43,7 @@ public class BaseOrderDTO {
     public BaseOrderDTO() {
     }
 
-    public BaseOrderDTO(long orderId, double price, LocalDateTime scheduledTime, Address deliveryAddress, Long restaurantId, Long userId, PickupMethod pickupMethod, Status status) {
-        this.orderId = orderId;
+    public BaseOrderDTO(double price, LocalDateTime scheduledTime, Address deliveryAddress, Long restaurantId, Long userId, PickupMethod pickupMethod, Status status) {
         this.price = price;
         this.scheduledTime = scheduledTime;
         this.deliveryAddress = deliveryAddress;
@@ -57,7 +54,6 @@ public class BaseOrderDTO {
     }
 
     public BaseOrderDTO(Order order) {
-        this.orderId = order.getId();
         this.price = order.getTotalPrice();
         this.scheduledTime = order.getScheduledTime();
         this.deliveryAddress = order.getDeliveryAddress();

@@ -22,13 +22,14 @@ class OrderDTOTest {
     void testConstructors() {
         OrderDTO orderDTO = new OrderDTO();
         BaseOrderDTO baseOrderDTO = new BaseOrderDTO();
-        baseOrderDTO.setOrderId(1L);
+        baseOrderDTO.setPrice(10.0);
         orderDTO.setOrder(baseOrderDTO);
 
-        assertThat(orderDTO.getOrder().getOrderId()).isEqualTo(1L);
+        assertThat(orderDTO.getOrder().getPrice()).isEqualTo(10.0);
 
         Order order = new Order();
         order.setId(2L);
+        order.setTotalPrice(10.0);
         order.setScheduledTime(LocalDateTime.now());
 
         Address deliveryAddress = new Address();
@@ -54,7 +55,7 @@ class OrderDTOTest {
 
         OrderDTO orderDTO2 = new OrderDTO(order, items);
 
-        assertThat(orderDTO2.getOrder().getOrderId()).isEqualTo(2L);
+        assertThat(orderDTO2.getOrder().getPrice()).isEqualTo(10.0);
         assertThat(orderDTO2.getItems()).containsExactly(itemDTO);
     }
 }

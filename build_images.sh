@@ -3,11 +3,11 @@
 # Define the directories containing Dockerfiles
 api="./backend"
 nextjs="./frontend"
-#nginx="./frontend/nginx"
+nginx="./nginx"
 
 api_name="quickserve-api"
 nextjs_name="quickserve-frontend"
-#nginx_name="nginx"
+nginx_name="nginx"
 
 # Function to build Docker images
 build_images() {
@@ -21,7 +21,7 @@ build_images() {
 build_all_images() {
     build_images "$api" "$api_name"
     build_images "$nextjs" "$nextjs_name"
-    #build_images "$nginx" "$nginx_name"
+    build_images "$nginx" "$nginx_name"
 }   
 
 # Check command line argument
@@ -31,8 +31,8 @@ elif [ "$1" == "api" ]; then
     build_images "$api" "$api_name"
 elif [ "$1" == "nextjs" ]; then
     build_images "$nextjs" "$nextjs_name"
-#elif [ "$1" == "nginx" ]; then
-#    build_images "$nginx" "$nginx_name"
+elif [ "$1" == "nginx" ]; then
+    build_images "$nginx" "$nginx_name"
 else
     echo "Invalid argument. Usage: $0 [all | api | nextjs | nginx]"
     exit 1
