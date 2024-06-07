@@ -20,3 +20,4 @@ The platform is tailored to meet the unique needs of system managers, customers,
 - [API Documentation](http://deti-tqs-05.ua.pt/swagger-ui/index.html#/)
 - [SonarCloud Dashboard](https://sonarcloud.io/project/branches_list?id=Mycsina_TQS-Projeto)
 - [CI/CD Pipeline](https://github.com/Mycsina/TQS-Projeto/actions)
+- [Presentation](https://uapt33090-my.sharepoint.com/:p:/g/personal/andremacardoso_ua_pt/EQJVT-6JdjFAl0SWMTMAvOABLd-uhz6CZXEM43qUx1k5EQ?rtime=0wwk3QmH3Eg)
